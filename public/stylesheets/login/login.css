@@ -1,0 +1,83 @@
+body {
+	position: relative;	
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+.main-area {	
+	height: 100%;
+}
+.logo-area {
+	position: relative;
+	height: 44%;
+	background: url('/images/cover.jpg');
+	background-size: cover;
+
+}
+.logo-area .logo-title {
+	padding-top: 1.1rem;
+	text-align: center;
+	font-size: 0.36rem;
+	color: #ffffff;
+}
+
+
+.toggle-tab-area {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 0.5rem;
+	line-height: 0.5rem;		
+	color: #fff;
+	font-size: 0.17rem;
+/*	background: rgba(255,255,255,0.1)*/
+}
+.toggle-tab-area span {
+	display: inline-block;
+	height: 100%;
+	width:50%;
+	text-align: center;	
+}
+span.active-tab {
+	border-bottom: 3px solid #27a566;
+}
+.content-area {
+	position: relative;
+}
+.form-area {
+	width: 84%;
+	margin: 0.2rem auto;
+}
+#username1, #username2, #password1, #password2, #password21 {
+	width: 100%;
+	height: 0.36rem;
+	margin-top: 0.2rem;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #eee;
+	font-size: 0.16rem;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #ccc; 
+} 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+.btn {
+	width: 84%;
+	height: 0.42rem;
+	background: #27a566;
+	border: none;
+	border-radius: 0.05rem;
+	font-size: 0.16rem;
+	color: #fff;
+}
+.confirm {
+	position: absolute;
+	top: 2.1rem;
+	left: 8%;
+}
+.signUp-area {
+	display: none;
+}

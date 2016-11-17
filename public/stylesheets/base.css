@@ -1,0 +1,14 @@
+html {
+	width: 100%;
+    font-size: 100px;
+    font-family: "黑体","Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+body {
+	width: 100%;
+	line-height: 0.14rem;
+	font-size: 0.14rem;
+}
+input[type='text'], input[type='password']{
+	padding: 0;
+	margin: 0;
+}

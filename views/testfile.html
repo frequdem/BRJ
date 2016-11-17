@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<style type="text/css">
+		html, body {
+			width: 100%;
+			height:100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+
+</body>
+</html>
+
+
+<h1 class="welcome-title">welcome to BRJ</h1>
+    <div class="signIn-block"> 
+      <div class="mode-toggle">
+        <span class="signIn-tab active-tab">登录</span>
+        <span class="signUp-tab">注册</span>
+      </div>
+      <input type="hidden" name="referer" class="referer" value=<%=referer%>>
+      <p class="login"><span class="login-field">用户名：</span><input type="text" name="username" class="login-input username"></p>
+    <p class="login"><span class="login-field">密码：</span><input type="password" name="password" class="login-input password"></p>
+    <button class="btn confirm" type="button">确定</button>
+    <button class="btn cancel" type="button">返回</button>
+    </div>
+
+    <div class="signUp-block">
+      <div class="mode-toggle">
+        <span class="signIn-tab">登录</span>
+        <span class="signUp-tab active-tab">注册</span>
+      </div>
+      <input type="hidden" name="referer" class="referer" value=<%=referer%>>
+      <p class="login"><span class="login-field">用户名：</span><input type="text" name="username" class="login-input username"></p>
+    <p class="login"><span class="login-field">密码：</span><input type="password" name="password" class="login-input password"></p>
+    <p class="login"><span class="login-field">确认密码：</span><input type="password" name="password" class="login-input password"></p>
+    <button class="btn confirm" type="button">确定</button>
+    <button class="btn cancel" type="button">返回</button>
+    </div>  

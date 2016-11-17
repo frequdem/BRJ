@@ -1,17 +1,14 @@
 var webpack = require('webpack');
+var pageConfig = require('./page.config');
 module.exports = {
-    entry: [
-        'webpack/hot/only-dev-server',
-        './js/app.js'
-    ],
+    entry: pageConfig,
     output: {
-        path: './build',
-        filename: 'bundle.js'
-    },
+        path: __dirname,
+        filename: "[name].js"
+        },
     module: {
         loaders: [
-            { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude:     /node_modules/ },
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            { test: /\.js?$/, loaders: ['babel-loader', 'babel'], exclude: /node_modules/}
         ]
     },
     resolve:{
@@ -20,4 +17,4 @@ module.exports = {
     plugins: [
 
     ]
-};
+}
