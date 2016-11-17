@@ -6,4 +6,8 @@ router.get('/index', function(req, res, next) {
   res.render('index/index');
 });
 
+router.get('/list', function(req, res, next) {
+	res.render('list/list');
+})
+
 module.exports = router;

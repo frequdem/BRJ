@@ -44,11 +44,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	$(document).ready(function () {
-		setTimeout(function () {
-			location.href = "/list";
-		}, 3000);
-	});
+	
 
 /***/ }
 /******/ ]);

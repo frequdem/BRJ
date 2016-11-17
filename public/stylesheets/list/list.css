@@ -1,0 +1,23 @@
+html, body {
+	height: 100%;
+}
+body {
+	position: relative;
+}
+.header {
+	height: 0.5rem;
+	line-height: 0.5rem;
+	font-size: 0.2rem;
+	background: #27a566;
+	text-align: center;
+	color: #efefef;
+}
+.fy-item {
+	margin-top: 0.4rem;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	font-size: 0.24rem;
+	color: #27a566;
+	background: #eee;
+}
