@@ -44,7 +44,11 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	
+	$(document).ready(function () {
+		$('.fy-item').click(function () {
+			location.href = '/login';
+		});
+	});
 
 /***/ }
 /******/ ]);
