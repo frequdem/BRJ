@@ -40,7 +40,7 @@ html, body {
 	text-align: center;	
 }
 span.active-tab {
-	border-bottom: 3px solid #27a566;
+	border-bottom: 3px solid #76B3B4;
 }
 .content-area {
 	position: relative;
@@ -67,7 +67,7 @@ input:-webkit-autofill {
 .btn {
 	width: 84%;
 	height: 0.42rem;
-	background: #27a566;
+	background: #76B3B4;
 	border: none;
 	border-radius: 0.05rem;
 	font-size: 0.16rem;

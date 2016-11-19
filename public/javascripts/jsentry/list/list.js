@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('.fy-item').click(function() {
+	$('span.login-img').click(function() {
 		location.href = '/login';
 	})
 })
