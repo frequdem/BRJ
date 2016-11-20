@@ -50,12 +50,12 @@ body {
 }
 
 .content {
-	margin-top: 0.53rem;
+	margin-top: 0.55rem;
 }
 .fy-item {
-	margin-bottom: 0.08rem;
-	margin-left: 1%;
-	width: 98%;
+	margin-bottom: 0.1rem;
+	margin-left: 1.5%;
+	width: 97%;
 	box-shadow: 0 0 3px 2px #ddd;
 }
 .fy-item .fy-item-img {
