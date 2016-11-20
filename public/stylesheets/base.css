@@ -15,3 +15,19 @@ input[type='text'], input[type='password']{
 * {
 	-webkit-tap-highlight-color:transparent;
 }
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    font-size:0;  
+}
+.do-like {
+    background: url('/images/do_like.png');
+    background-size: contain;
+}
+.donot-like {
+    background: url('/images/donot_like.png');
+    background-size: contain;
+}
