@@ -48,7 +48,7 @@
 		var FORM_TYPE = 1; //1为登录，2为注册
 		var phoneTest = /^\d{11}$/;
 		var emailTest = /^.+@.+\.com$/;
-		$('.confirm').click(function () {
+		$('.confirm').tap(function () {
 			switch (FORM_TYPE) {
 				case 1:
 					var data1 = {
@@ -125,22 +125,22 @@
 		var signUpTabJq = $('.signUp-tab');
 		var signInAreaJq = $('.signIn-area');
 		var signUpAreaJq = $('.signUp-area');
-		signInTabJq.click(function () {
+		signInTabJq.tap(function () {
 			if (!$(this).hasClass('active-tab')) {
 				$(this).addClass('active-tab');
 				signUpTabJq.removeClass('active-tab');
 				signUpAreaJq.hide(0);
-				signInAreaJq.fadeIn(500);
+				signInAreaJq.show(500);
 
 				FORM_TYPE = 1;
 			}
 		});
-		signUpTabJq.click(function () {
+		signUpTabJq.tap(function () {
 			if (!$(this).hasClass('active-tab')) {
 				$(this).addClass('active-tab');
 				signInTabJq.removeClass('active-tab');
 				signInAreaJq.hide(0);
-				signUpAreaJq.fadeIn(500);
+				signUpAreaJq.show(500);
 
 				FORM_TYPE = 2;
 			}

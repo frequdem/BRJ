@@ -81,3 +81,10 @@ input:-webkit-autofill {
 .signUp-area {
 	display: none;
 }
+label {
+	position: relative;
+}
+.input-icon {
+	position: absolute;
+	left: 0.2rem;
+}
