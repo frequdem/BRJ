@@ -63,8 +63,7 @@ $(document).ready(function() {
 						success: function(data) {
 							if(data.status === 200) {
 								alert("注册成功！");
-								// location.href = $('.referer').val();
-								location.reload();
+								location.href = $('.referer').val();
 							} else {
 								alert("注册失败");
 							}
