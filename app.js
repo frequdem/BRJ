@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var logins = require('./routes/login');
 var mains = require('./routes/mains');
 var singles = require('./routes/single');
+var dbConnection = require('./models/connection');
 var app = express();
 
 // view engine setup
@@ -21,7 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use('/login', logins);
 app.use('/single', singles);

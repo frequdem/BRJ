@@ -16,8 +16,7 @@ $(document).ready(function() {
 					type: 'POST',
 					success: function(data) {
 						if(data.status === 200) {
-								// location.href = $('.referer').val();
-							location.href = '/index';
+							location.href = $('.referer').val();
 						} else {
 							alert("账号或密码错误");
 						}
@@ -57,19 +56,19 @@ $(document).ready(function() {
 						username: un2.val(),
 						password: pw2.val()
 					};
-				$.ajax({
-					url: '/login/signUp',
-					data: data2,
-					type: 'POST',
-					success: function(data) {
-						if(data.status === 200) {
-							alert("注册成功！");
-							// location.href = $('.referer').val();
-							location.reload();
-						} else {
-							alert("注册失败");
+					$.ajax({
+						url: '/login/signUp',
+						data: data2,
+						type: 'POST',
+						success: function(data) {
+							if(data.status === 200) {
+								alert("注册成功！");
+								// location.href = $('.referer').val();
+								location.reload();
+							} else {
+								alert("注册失败");
+							}
 						}
-					}
 				})
 				break;
 		}

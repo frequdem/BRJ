@@ -62,8 +62,7 @@
 						type: 'POST',
 						success: function (data) {
 							if (data.status === 200) {
-								// location.href = $('.referer').val();
-								location.href = '/index';
+								location.href = $('.referer').val();
 							} else {
 								alert("账号或密码错误");
 							}
