@@ -1,0 +1,8 @@
+.field {
+	display: inline-block;
+	text-align: justify;
+	width: 1rem;
+}
+.p-tag {
+	margin-top: 0.1rem;
+}

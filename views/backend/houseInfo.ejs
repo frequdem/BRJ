@@ -1,0 +1,30 @@
+<% include ../head.ejs %>
+	    <title>登录</title>
+	    <link rel='stylesheet' href='/stylesheets/backend/houseInfo.css' />
+	    <script type="text/javascript" src="/javascripts/js/backend/houseInfo.js"></script>
+  	</head>
+  	<body>  	
+        
+        <form action="/backend/houseInfoInput" method="post">          
+            <p class="p-tag"><span class="field">省/直辖市：</span><input autocomplete="off" type="text" name="province"></p>
+            <p class="p-tag"><span class="field">市/区：</span><input autocomplete="off" type="text" name="county"></p>
+            <p class="p-tag"><span class="field">年份</span><input autocomplete="off" type="text" name="age"></p>
+            <p class="p-tag"><span class="field">面积</span><input autocomplete="off" type="text" name="area"></p>
+            <p class="p-tag"><span class="field">类型</span><input autocomplete="off" type="text" name="type"></p>
+            <p class="p-tag"><span class="field">家的名字</span><input autocomplete="off" type="text" name="title"></p>
+            <p class="p-tag"><span class="field">户主姓名</span><input autocomplete="off" type="text" name="host_name1"></p>
+            <p class="p-tag"><span class="field">户主职业</span><input autocomplete="off" type="text" name="host_job1"></p>
+            <p class="p-tag"><span class="field">户主年龄</span><input autocomplete="off" type="text" name="host_age1"></p>
+            <p class="p-tag"><span class="field">户主姓名(选)</span><input autocomplete="off" type="text" name="host_name2"></p>
+            <p class="p-tag"><span class="field">户主职业(选)</span><input autocomplete="off" type="text" name="host_job2"></p>
+            <p class="p-tag"><span class="field">户主年龄(选)</span><input autocomplete="off" type="text" name="host_age2"></p>
+            <p class="p-tag"><span class="field">装修时间</span><input autocomplete="off" type="text" name="dec_time"></p>
+            <p class="p-tag"><span class="field">装修费用</span><input autocomplete="off" type="text" name="dec_cost"></p>
+            <p class="p-tag"><span class="field">装修耗时</span><input autocomplete="off" type="text" name="dec_period"></p>
+            <p class="p-tag"><span class="field">装修心得</span><textarea autocomplete="off" name="dec_experience" rows=5 cols=50></textarea>
+            <br>
+            <button type="submit">提交</button>
+        </form>
+ 
+  	</body>
+</html>

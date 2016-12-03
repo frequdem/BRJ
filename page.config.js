@@ -4,7 +4,9 @@ var data = {
 	"login/login": "login/login.js",
 	"index/index": "index/index.js",
 	"list/list": "list/list.js",
-	"single/single": "single/single.js"
+	"single/single": "single/single.js",
+
+	"backend/houseInfo": "backend/houseInfo.js"
 }
 var dataExport = {};
 for(var key in data) {

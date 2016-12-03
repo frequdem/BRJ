@@ -5,11 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//链接数据库
+var dbConnection = require('./models/connection');
 var logins = require('./routes/login');
 var mains = require('./routes/mains');
 var singles = require('./routes/single');
-var dbConnection = require('./models/connection');
+var backends = require('./routes/backend');
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', logins);
 app.use('/single', singles);
+app.use('/backend', backends);
 app.use('/', mains);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

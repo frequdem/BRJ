@@ -11,10 +11,6 @@ var hostSchema = new mongoose.Schema({
 	hostAge: {
 		type: Number,
 		require: true
-	},
-	_id: {
-		type: Number,
-		require: true
 	}
 });
 var Host = mongoose.model('host',hostSchema);

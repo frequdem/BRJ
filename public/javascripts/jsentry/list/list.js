@@ -16,5 +16,4 @@ $(document).ready(function() {
 	$('.fy-item').on('tap', function() {
 		location.href = "/single/single"
 	})
-
 })
