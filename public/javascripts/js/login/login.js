@@ -143,6 +143,9 @@
 				FORM_TYPE = 2;
 			}
 		});
+		$('.goBack').tap(function () {
+			history.back();
+		});
 	});
 
 /***/ }

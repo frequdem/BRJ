@@ -79,7 +79,7 @@ $(document).ready(function() {
 	var signUpTabJq = $('.signUp-tab');
 	var signInAreaJq = $('.signIn-area');
 	var signUpAreaJq = $('.signUp-area');
-	signInTabJq.tap(function () {
+	signInTabJq.tap(function() {
 		if (!$(this).hasClass('active-tab')) {
 			$(this).addClass('active-tab');
 			signUpTabJq.removeClass('active-tab');
@@ -89,7 +89,7 @@ $(document).ready(function() {
 			FORM_TYPE = 1;
 		}		
 	});
-	signUpTabJq.tap(function () {
+	signUpTabJq.tap(function() {
 		if (!$(this).hasClass('active-tab')) {
 			$(this).addClass('active-tab');
 			signInTabJq.removeClass('active-tab');
@@ -98,6 +98,8 @@ $(document).ready(function() {
 
 			FORM_TYPE = 2;
 		}
-
+	});
+	$('.goBack').tap(function() {
+		history.back();
 	})
 })

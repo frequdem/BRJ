@@ -48,3 +48,8 @@ body {
 	background: url('/images/list/login.jpg');
 	background-size: contain;
 }
+.goBack {
+	margin-left: 0.1rem;
+	font-size: 0.22rem;
+	color: #76B3B4;
+}
