@@ -50,6 +50,33 @@ body {
 }
 .goBack {
 	margin-left: 0.1rem;
-	font-size: 0.22rem;
-	color: #76B3B4;
+	font-size: 0.26rem;
+	color: #fff;
+}
+.cover-part {
+	width: 100%;
+	margin-top: 0.52rem;
+}
+.cover-part img {
+	width: 100%;
+}
+.info-tabs {
+	height: 0.6rem;
+	background: #76B3B4;
+	position: relative;
+}
+.play-icon {
+	position: absolute;
+	top: -0.07rem;
+	right: 0.2rem;
+	color: #fff;
+	font-size: 0.5rem;
+}
+.house-title {
+	position: absolute;
+	top: -0.3rem;
+	left: 0.24rem;
+	font-size: 0.18rem;
+	color: #fff;
+	text-shadow: #999 0.01rem 0.01rem 0.01rem;
 }

@@ -60,7 +60,8 @@
 		});
 
 		$('.fy-item').on('tap', function () {
-			location.href = "/single/single";
+			var path = "/single/single?id=" + $(this).data('id');
+			location.href = path;
 		});
 	});
 
