@@ -55,7 +55,7 @@ body {
 }
 .cover-part {
 	width: 100%;
-	margin-top: 0.52rem;
+	margin-top: 0.5rem;
 }
 .cover-part img {
 	width: 100%;
@@ -79,4 +79,71 @@ body {
 	font-size: 0.18rem;
 	color: #fff;
 	text-shadow: #999 0.01rem 0.01rem 0.01rem;
+}
+.info-tabs__tabs {
+	position: absolute;
+	width: 100%;
+	bottom: 0.1rem;
+	font-size: 0.15rem;
+}
+.info-tabs__tabs .info-tabs__tab {
+	display: inline-block;
+	width: 33%;
+	float: left;
+	text-align: center;
+}
+.info-tabs__tab a {
+	color: #fff;
+	text-decoration: none;
+}
+.info__full {
+	width: 84%;
+	margin-left: 8%;
+	margin-top: 0.2rem;
+}
+.portrait-name {
+	margin-top: 0.24rem;
+	line-height: 0.42rem;
+	height: 0.42rem;
+}
+.portrait-name span {
+	margin-left: 0.2rem;
+	line-height: 0.42rem;
+	font-size: 0.16rem;
+	color: #999;
+}
+.anchor {
+	margin-top: -0.5rem;
+	padding-top: 0.5rem;
+}
+.info__portrait {
+	height: 0.42rem;
+	width: 0.42rem;
+	border-radius: 0.21rem;
+}
+.info__title {
+	font-size: 0.16rem;
+	color: #76B3B4;
+	line-height: 0.5rem;
+	margin-top: 0.16rem;
+}
+.info__field--key, .info__field--value {
+	font-size: 0.16rem;
+	display: inline-block;
+	line-height: 0.28rem;
+}
+.info__field--key {
+	width: 0.64rem;
+	color: #999;
+	text-align: right;
+}
+.info__field--value {
+	margin-left: 0.1rem;
+	width: 2rem;
+	color: #333;
+}
+.seperator {
+	border: none;
+	border-top:1px solid #eee;
+	margin-top: -0.1rem;
 }
