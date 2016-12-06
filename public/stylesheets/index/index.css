@@ -7,7 +7,7 @@ body {
 .title {
 	width: 100%;
 	position: absolute;
-	bottom: 0.6rem;
+	bottom: 0.8rem;
 	text-align: center;
 }
 .title .main-title {
@@ -20,7 +20,7 @@ body {
 	font-size: 0.14rem;
 	height: 0.2rem;
 	line-height: 0.2rem;
-	color: #ccc;
+	color: #bbb;
 }
 .beian-part {
 	width: 100%;
@@ -28,5 +28,5 @@ body {
 	bottom: 0.1rem;
 	text-align: center;
 	font-size: 0.12rem;
-	color: #eee;
+	color: #ddd;
 }
