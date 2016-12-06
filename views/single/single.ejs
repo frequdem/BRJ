@@ -6,7 +6,11 @@
     <body>
         <div class="header"><i class="iconfont goBack">&#xe61d;</i><span class="others">别人</span><span class="home-word">家</span>
         	<span class="login-area">
-              <span class="login-img"></span>          
+                <% if(!logStatus) {%>
+                    <i class="iconfont login-img unlogged">&#xe632;</i>  
+                <% }else{%>
+                    <i class="iconfont login-img logged">&#xe60f;</i>  
+                <%}%>      
               <span class="split-img"></span>
         	</span>
         </div>
@@ -32,6 +36,7 @@
           <h2 class="info__title">主人信息</h2>
           <hr class="seperator">
             <% data.hosts.forEach(function(item) { %>
+            <div>            
               <div class="info__field--key">
                 <p>姓名</p>
                 <p>年龄</p>
@@ -42,6 +47,7 @@
                 <p><%=item.hostAge%></p>
                 <p><%=item.hostJob%></p>
               </div>
+            </div>
             <%  })%>
        
           <h2 class="info__title">房屋信息</h2>

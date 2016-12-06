@@ -108,8 +108,15 @@
 						type: 'POST',
 						success: function (data) {
 							if (data.status === 200) {
-								alert("注册成功！");
-								location.href = $('.referer').val();
+								if (data.result.isUsed) {
+									alert('该用户名已被注册');
+									un2.val('');
+									pw2.val('');
+									pw2Again.val('');
+								} else {
+									alert("注册成功！");
+									location.href = $('.referer').val();
+								}
 							} else {
 								alert("注册失败");
 							}

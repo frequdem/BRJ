@@ -45,8 +45,9 @@ body {
 	float: right;
 	width: 0.5rem;
 	height: 0.5rem;
-	background: url('/images/list/login.jpg');
-	background-size: contain;
+	font-size: 0.3rem;
+	text-align: center;
+	background: #76B3B4;
 }
 
 .content {

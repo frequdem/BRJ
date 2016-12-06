@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var checkSession = require('../assist/checkSession');
 var Host = require('../models/host');
 var House = require('../models/house');
 /* GET home page. */
@@ -11,7 +12,8 @@ router.get('/list', function(req, res, next) {
 	var data;
 	House.find({}, function(err, data) {
 		data = data;
-		res.render('list/list', {list: data});
+		var lgSt = checkSession(req);
+		res.render('list/list', {list: data, logStatus: lgSt});
 	})
 
 })

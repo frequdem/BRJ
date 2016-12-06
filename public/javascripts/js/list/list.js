@@ -46,7 +46,7 @@
 
 	$(document).ready(function () {
 
-		$('span.login-img').on('tap', function () {
+		$('i.unlogged').on('tap', function () {
 			location.href = '/login';
 		});
 		$('.fy-item-cover .like-icon').on('tap', function (e) {

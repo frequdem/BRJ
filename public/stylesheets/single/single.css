@@ -45,8 +45,9 @@ body {
 	float: right;
 	width: 0.5rem;
 	height: 0.5rem;
-	background: url('/images/list/login.jpg');
-	background-size: contain;
+	font-size: 0.3rem;
+	text-align: center;
+	background: #76B3B4;
 }
 .goBack {
 	margin-left: 0.1rem;
@@ -128,9 +129,9 @@ body {
 	margin-top: 0.16rem;
 }
 .info__field--key, .info__field--value {
-	font-size: 0.16rem;
+	font-size: 0.14rem;
 	display: inline-block;
-	line-height: 0.28rem;
+	line-height: 0.22rem;
 }
 .info__field--key {
 	width: 0.64rem;

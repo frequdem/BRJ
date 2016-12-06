@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var checkSession = require('../assist/checkSession');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 var House = require('../models/house');
@@ -19,8 +20,8 @@ router.get('/single', function(req, res, next) {
 		})).then(function(hs) {
 				data.hosts = hs;
 				data.dec_time = data.dec_time.getFullYear()+"-"+(data.dec_time.getMonth()+1)+"-"+data.dec_time.getDate();
-				// data.dec_time = data.dec_time.format("yyyy-MM-dd");
-				res.render('single/single', {data: data});
+				var lgSt = checkSession(req);
+				res.render('single/single', {data: data, logStatus: lgSt});
 			})
 		})		
 	});

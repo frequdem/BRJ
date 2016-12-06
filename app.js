@@ -13,6 +13,8 @@ var singles = require('./routes/single');
 var backends = require('./routes/backend');
 var app = express();
 
+var session = require('express-session');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +27,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+  secret: 'bierenjia',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use('/login', logins);
 app.use('/single', singles);
 app.use('/backend', backends);
