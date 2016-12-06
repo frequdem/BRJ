@@ -22,7 +22,11 @@ body {
 	line-height: 0.2rem;
 	color: #ccc;
 }
-.beian {
+.beian-part {
+	width: 100%;
+	position: absolute;
+	bottom: 0.1rem;
+	text-align: center;
 	font-size: 0.12rem;
-	color: eee;
+	color: #eee;
 }
