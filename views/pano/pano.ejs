@@ -1,0 +1,97 @@
+<% include ../head.ejs %>
+    <title>别人家</title>
+    <link rel='stylesheet' href='/stylesheets/pano/pano.css' />
+    <script type="text/javascript" src="/javascripts/js/pano/pano.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/Pano.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/Compass.js"></script>
+
+    <!--顶点着色器-->
+    <script type="x-shader/x-vertex" id="vshader">
+         uniform mat4 projection;
+         uniform mat4 modelview;
+         attribute vec3 coords;
+         varying vec3 vCoords;
+         void main() {
+            vec4 eyeCoords = modelview * vec4(coords,1.0);
+            gl_Position = projection * eyeCoords;
+            vCoords = coords;//gl_Position.xyz;
+         }
+     </script>
+    <!--片元着色器-->
+    <script type="x-shader/x-fragment" id="fshader">
+         precision mediump float;
+         varying vec3 vCoords;
+         uniform float uSwitchRatio;
+         uniform samplerCube uCubeSamplerCur;
+
+         void main() {
+                vec4 texColor = textureCube(uCubeSamplerCur, vCoords);
+                if(uSwitchRatio == 0.0){
+                gl_FragColor = texColor;
+                }else{
+                gl_FragColor = (vec4(0.12,0.12,0.12,1.0) - texColor)*pow(uSwitchRatio,6.0) + texColor  ;
+                }
+                //gl_FragColor = vec4(0.5, 0.0, 0.0, 1.0);
+         }
+     </script>
+    <!--相邻全景位置顶点着色器-->
+    <script type="x-shader/x-vertex" id="vNeighshader">
+         attribute vec4 aCoords;
+         uniform mat4 uProjection;
+         uniform mat4 uViewMat;
+         uniform int uIdSel;
+         attribute float aIdCur;
+         uniform float uAlpha;
+         varying float vAlpha;
+         void main() {
+            if(int(aIdCur) == uIdSel){
+                vAlpha = uAlpha;
+            }else{
+                vAlpha = 0.1;
+            }
+            gl_Position = uProjection * uViewMat* aCoords;
+            //gl_PointSize = 20.0;
+         }
+     </script>
+    <!--相邻全景位置片元着色器-->
+    <script type="x-shader/x-fragment" id="fNeighshader">
+         precision mediump float;
+         varying float vAlpha;
+         void main() {
+              gl_FragColor = vec4(0.9,0.6,0.3,vAlpha);
+         }
+     </script>
+</head>
+<body>
+<canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
+<!-- <div id="compass" style="width: 100px;height: 100px;display: inline-block;"></div> -->
+
+<script>
+
+    var settings = {
+        GI:{
+            canvas : document.getElementById('canvas'),
+            firstPath : "resource/5842fa95a5ebde0133fe9bcd/1-1/",
+            smoothSwitch : true,
+            pts : {"1-1":[{position:[61.361741,-73.841522,53.685811],path:"resource/5842fa95a5ebde0133fe9bcd/1-2/",name:"客厅",planPt:[40,70]}],
+                "1-2":[{position:[-69.486974,-61.8482,-58.705712],path:"resource/5842fa95a5ebde0133fe9bcd/1-1/",name:"入口",planPt:[63,85]},{position:[81.213054,-65.787882,-34.298606],path:"resource/5842fa95a5ebde0133fe9bcd/1-3/",name:"厕所",planPt:[63,50]}],
+                "1-3":[{position:[-88.254866,-59.156355,28.488669],path:"resource/5842fa95a5ebde0133fe9bcd/1-2/",name:"客厅",planPt:[40,70]},{position:[74.859215,-80.327905,6.597397],path:"resource/5842fa95a5ebde0133fe9bcd/1-4/",name:"卧室",planPt:[63,29]}],
+                "1-4":[{position:[-79.418569,-74.280967,-16.583994],path:"resource/5842fa95a5ebde0133fe9bcd/1-3/",name:"厕所",planPt:[63,29]},{position:[83.093469,-59.086059,41.283325],path:"resource/5842fa95a5ebde0133fe9bcd/1-5/",name:"窗台",planPt:[40,5]}],
+                "1-5":[{position:[-85.147062,-48.708827,-49.773769],path:"resource/5842fa95a5ebde0133fe9bcd/1-4/",name:"卧室",planPt:[63,60]}]}
+        }
+    };
+    var qj = new PanoAJK.Init(settings);
+
+    var argsForCompass = {
+        GI : qj.Core,
+        dom : document.getElementById('compass'),
+        controller : qj.Controller,
+        angle : 98,
+        path: 'images/pano/'
+    };
+    // var compass = new PanoAJK.Component.Compass(argsForCompass);
+    // qj.addComponent(compass);
+    qj.draw();
+</script>
+</body>
+</html>
