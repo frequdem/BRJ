@@ -5,7 +5,7 @@ var data = {
 	"index/index": "index/index.js",
 	"list/list": "list/list.js",
 	"single/single": "single/single.js",
-
+	"pano/pano": "pano/pano.js",
 	"backend/houseInfo": "backend/houseInfo.js"
 }
 var dataExport = {};
