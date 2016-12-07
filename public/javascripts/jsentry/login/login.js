@@ -16,7 +16,7 @@ $(document).ready(function() {
 					type: 'POST',
 					success: function(data) {
 						if(data.status === 200) {
-							location.href = $('.referer').val();
+							location.replace($('.referer').val());		
 						} else {
 							alert("账号或密码错误");
 						}
@@ -69,7 +69,7 @@ $(document).ready(function() {
 									pw2Again.val('');
 								} else {
 									alert("注册成功！");
-									location.href = $('.referer').val();
+									location.replace($('.referer').val());
 								}
 							} else {
 								alert("注册失败");
