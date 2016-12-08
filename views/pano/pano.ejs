@@ -63,8 +63,11 @@
      </script>
 </head>
 <body>
+<div>
+    <i class="iconfont goBack">&#xe61d;</i>
+</div>
 <canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
-<!-- <div id="compass" style="width: 100px;height: 100px;display: inline-block;"></div> -->
+<div id="compass"></div>
 
 <script>
 
@@ -89,8 +92,8 @@
         angle : 98,
         path: 'images/pano/'
     };
-    // var compass = new PanoAJK.Component.Compass(argsForCompass);
-    // qj.addComponent(compass);
+    var compass = new PanoAJK.Component.Compass(argsForCompass);
+    qj.addComponent(compass);
     qj.draw();
 </script>
 </body>
