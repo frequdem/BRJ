@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/list', function(req, res, next) {
 	var data;
 	House.find({}, function(err, data) {
+		console.log(data);
 		data = data;
 		var lgSt = checkSession(req);
 		res.render('list/list', {list: data, logStatus: lgSt});
