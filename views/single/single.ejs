@@ -20,7 +20,7 @@
               <span class="house-title"><%=data.title%></span>
               <a href="/pano"><i class="iconfont play-icon">&#xe604;</i></a>
               <ul class="info-tabs__tabs">
-                <li class="info-tabs__tab"><a href="#host-info">主人信息</a></li>
+                <li class="info-tabs__tab tab--active"><a href="#host-info">主人信息</a></li>
                 <li class="info-tabs__tab"><a href="#house-info">房屋信息</a></li>
                 <li class="info-tabs__tab"><a href="#comments">评论</a></li>
               </ul>
@@ -30,10 +30,9 @@
 
           <p class="portrait-name"><img class="info__portrait" src="/resource/<%=data._id%>/portrait.jpg">
               <span><%=data.title %></span>
-
           </p>
 
-          <h2 class="info__title">主人信息</h2>
+          <h2 class="info__title anchor-point" id="host-info">主人信息</h2>
           <hr class="seperator">
             <% data.hosts.forEach(function(item) { %>
             <div>            
@@ -48,30 +47,89 @@
                 <p><%=item.hostJob%></p>
               </div>
             </div>
-            <%  })%>
-       
-          <h2 class="info__title">房屋信息</h2>
-          <hr class="seperator">
-              <div class="info__field--key">
-                <p>房屋位置</p>
-                <p>户型</p>
-                <p>面积</p>
-                <p>装修时间</p>
-                <p>装修费用</p>
-                <p>装修耗时</p>
-                <p>感悟</p>
-              </div>
-              <div class="info__field--value">
-                <p><%=data.province%>&nbsp;<%=data.county%></p>
-                <p><%=data.type%></p>
-                <p><%=data.area%>㎡</p>
-                <p><%=data.dec_time%></p>
-                <p><%=data.dec_cost%>万</p>
-                <p><%=data.dec_period%>个月</p>
-                <p><%=data.dec_experience%></p>
-              </div>
+            <%  })%>       
+            <h2 class="info__title anchor-point" id="house-info">房屋信息</h2>
+            <hr class="seperator">
+            <div class="info__field--key">
+              <p>房屋位置</p>
+              <p>户型</p>
+              <p>面积</p>
+              <p>装修时间</p>
+              <p>装修费用</p>
+              <p>装修耗时</p>
+              <p>感悟</p>
+            </div>
+            <div class="info__field--value">
+              <p><%=data.province%>&nbsp;<%=data.county%></p>
+              <p><%=data.type%></p>
+              <p><%=data.area%>㎡</p>
+              <p><%=data.dec_time%></p>
+              <p><%=data.dec_cost%>万</p>
+              <p><%=data.dec_period%>个月</p>
+              <p><%=data.dec_experience%></p>
+            </div>
               
-            <h2 class="info__title">评论</h2>
+            <h2 class="info__title anchor-point" id="comments">评论</h2>
+            <hr class="seperator">
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
+            <p>asdf</p>
             <hr class="seperator">
         </div>   
     </body>

@@ -3,7 +3,8 @@
         <link rel='stylesheet' href='/stylesheets/list/list.css' />
         <script type="text/javascript" src="/javascripts/js/list/list.js"></script>
     </head>
-    <body>      
+    <body>
+        <% include ../myInfo.ejs %>      
         <div class="header"><a><span class="others">别人</span><span class="home-word">家</span></a>
             <span class="login-area">
                 <% if(!logStatus) {%>

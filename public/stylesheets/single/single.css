@@ -84,7 +84,7 @@ body {
 .info-tabs__tabs {
 	position: absolute;
 	width: 100%;
-	bottom: 0.1rem;
+	bottom: 0.01rem;
 	font-size: 0.15rem;
 }
 .info-tabs__tabs .info-tabs__tab {
@@ -147,4 +147,12 @@ body {
 	border: none;
 	border-top:1px solid #eee;
 	margin-top: -0.1rem;
+}
+.info-tabs__tab.tab--active {
+	border-bottom: 2px solid #fff;
+	padding-bottom: 0.1rem;
+}
+.anchor-point {
+	padding-top: 0.5rem;
+	margin-top: -0.5rem;
 }
