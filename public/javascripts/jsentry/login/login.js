@@ -29,24 +29,30 @@ $(document).ready(function() {
 				var un2 = $('#username2');
 				var pw2 = $('#password2');
 				var pw2Again = $('#password21');
+				var nn = $('#nickname');
 
-				var username2 = username2.replace(/\s/g, "");
-				var password2 = password2.replace(/\s/g, "");
-				var password21 = password21.replace(/\s/g, "");
+				var username2 = un2.val().replace(/\s/g, "");
+				var password2 = pw2.val().replace(/\s/g, "");
+				var password21 = pw2Again.val().replace(/\s/g, "");
+				var nickname = nn.val().replace(/\s/g, "");
 				//验证输入合法性
-				if ((!username2) || (!password2) || (!password21)) {
+				if ((!username2) || (!password2) || (!password21)||(!nickname)) {
 					alert('请填写完整的信息');
 					return;
 				}
 
 				if (!(phoneTest.test(username2) || emailTest.test(username2))) {
-					alert('请输入合法邮箱或手机号');
+					alert('你输入的是邮箱？');
 					un2.val('');
 					return;
 				}
-
+				if (nickname.length > 12) {
+					alert('昵称太长啦！');
+					nn.val();
+					return;
+				}
 				if (password2.length <6) {
-					alert('密码设置过短');
+					alert('密码太短，容易被盗的');
 					return;
 				}
 
@@ -59,7 +65,8 @@ $(document).ready(function() {
 
 				var data2 = {
 						username: username2,
-						password: password2
+						password: password2,
+						nickname: nickname
 					};
 					$.ajax({
 						url: '/login/signUp',

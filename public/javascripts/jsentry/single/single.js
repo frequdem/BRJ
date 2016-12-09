@@ -1,5 +1,5 @@
 	var initMyInfo = require('../component/myInfo');
-	initMyInfo();
+	initMyInfo('.logged');
 	$(document).ready(function() {
 		$('i.unlogged').on('tap',function() {
 			location.href = '/login';

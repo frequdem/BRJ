@@ -7,7 +7,16 @@ var userSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		require: true
+	},
+	nickname: {
+		type: String,
+		require: true
+	},
+	like: {
+		type:[String],
+		default: []
 	}
+
 });
 var User = mongoose.model('user',userSchema);
 module.exports = User;

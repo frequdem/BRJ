@@ -1,0 +1,46 @@
+.content {
+	margin-top: 0.24rem;
+	margin-left: 10%;
+	width: 80%;
+	height: 3rem;
+}
+.nickname {
+	height: 0.22rem;
+	line-height: 0.22rem;
+	font-size: 0.22rem;
+	color: #76B3B4;
+	vertical-align: bottom;
+	text-align: right;
+}
+.nickname span {
+	font-size: 0.16rem;
+	vertical-align: bottom;
+}
+.seperator {
+	border: none;
+	border-top: 1px solid #ddd;
+	margin-bottom: 0.5rem;
+}
+.my-option {
+	height: 0.16rem;
+	line-height: 0.16rem;
+	font-size: 0.16rem;
+	color: #666;
+}
+.option-icon {
+	display: inline-block;
+	height: 0.18rem;
+	line-height: 0.18rem;
+	font-size: 0.18rem;
+	margin-right: 0.1rem;
+}
+.unavailable {
+	color: #ccc;
+}
+.logout {
+	display: inline-block;
+	margin-top: 0.9rem;
+	font-size: 0.18rem;
+	color: #666;
+	text-decoration: none;
+}

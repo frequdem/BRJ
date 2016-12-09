@@ -6,7 +6,8 @@ var data = {
 	"list/list": "list/list.js",
 	"single/single": "single/single.js",
 	"pano/pano": "pano/pano.js",
-	"backend/houseInfo": "backend/houseInfo.js"
+	"backend/houseInfo": "backend/houseInfo.js",
+	"login/myInfo": "login/myInfo.js"
 }
 var dataExport = {};
 for(var key in data) {
