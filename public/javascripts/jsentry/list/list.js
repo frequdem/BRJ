@@ -1,5 +1,5 @@
+var initMyInfo = require('../component/myInfo');
 $(document).ready(function() {
-
 	$('i.unlogged').on('tap',function() {
 		location.href = '/login';
 	});
@@ -16,17 +16,6 @@ $(document).ready(function() {
 		var path = "/single/single?id=" + $(this).data('id');
 		location.href = path;
 	})
+});
 
-	var maskJq = $('.mask--myinfo');
-	var myinfoJq = $('.myinfo');
-	$('.logged').tap(function() {
-		if (maskJq.css('display') === 'none') {
-			maskJq.show();
-			myinfoJq.animate({right: 0},200);
-		} else {
-			maskJq.hide();
-			myinfoJq.animate({right: '-2.6rem'},200);
-		}
-
-	})
-})
+initMyInfo();
