@@ -1,4 +1,5 @@
 var initMyInfo = require('../component/myInfo');
+initMyInfo();
 $(document).ready(function() {
 	$('i.unlogged').on('tap',function() {
 		location.href = '/login';
@@ -18,4 +19,3 @@ $(document).ready(function() {
 	})
 });
 
-initMyInfo();
