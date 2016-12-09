@@ -5,9 +5,11 @@ $(document).ready(function() {
 	$('.confirm').tap(function() {
 		switch (FORM_TYPE) {
 			case 1:
+				var username1 = $('#username1').val().replace(/\s/g, "");
+				var password1 = $('#password1').val().replace(/\s/g, "");
 				var data1 = {
-							username: $('#username1').val(),
-							password: $('#password1').val()
+							username: username1,
+							password: password1
 						};
 
 				$.ajax({
@@ -28,24 +30,27 @@ $(document).ready(function() {
 				var pw2 = $('#password2');
 				var pw2Again = $('#password21');
 
+				var username2 = username2.replace(/\s/g, "");
+				var password2 = password2.replace(/\s/g, "");
+				var password21 = password21.replace(/\s/g, "");
 				//验证输入合法性
-				if ((!un2.val()) || (!pw2.val()) || (!pw2Again.val())) {
+				if ((!username2) || (!password2) || (!password21)) {
 					alert('请填写完整的信息');
 					return;
 				}
 
-				if (!(phoneTest.test(un2.val()) || emailTest.test(un2.val()))) {
+				if (!(phoneTest.test(username2) || emailTest.test(username2))) {
 					alert('请输入合法邮箱或手机号');
 					un2.val('');
 					return;
 				}
 
-				if (pw2.val().length <6) {
+				if (password2.length <6) {
 					alert('密码设置过短');
 					return;
 				}
 
-				if (pw2.val() !== pw2Again.val()) {
+				if (password2 !== password21) {
 					alert('两输入密码不一致');
 					pw2.val('');
 					pw2Again.val('');
@@ -53,8 +58,8 @@ $(document).ready(function() {
 				}
 
 				var data2 = {
-						username: un2.val(),
-						password: pw2.val()
+						username: username2,
+						password: password2
 					};
 					$.ajax({
 						url: '/login/signUp',
