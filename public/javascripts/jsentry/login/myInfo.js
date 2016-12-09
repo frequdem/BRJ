@@ -12,7 +12,7 @@ $(document).ready(function() {
 			}
 		})
 	});
-	$('.content').on('touchmove', function(e) {
+	$('body').on('touchmove', function(e) {
 			e.preventDefault();
 		});
 })
