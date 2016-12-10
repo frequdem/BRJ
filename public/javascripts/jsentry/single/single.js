@@ -7,4 +7,10 @@
 		$('.goBack').on('tap', function() {
 			location.href = '/list';
 		});
+
+		$('.info-tabs__tab').click(function() {
+	$('html, body').animate({
+scrollTop: $($(this).data('href')).offset().top+'px'
+}, 300);	
+})
 	})
