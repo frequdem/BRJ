@@ -9,8 +9,10 @@
 		});
 
 		$('.info-tabs__tab').click(function() {
-				$('html, body').animate({
-					"scrollTop": $($(this).find('a').data('href')).offset().top+'px'
-				}, 300);	
+				$('html,body').scrollTo({
+					toT: $($(this).find('a').data('href')).offset().top,
+					durTime: 150
+				});	
+				// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
 			})
 	})
