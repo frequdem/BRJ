@@ -31,18 +31,19 @@
 
           <p class="portrait-name"><img class="info__portrait" src="/resource/<%=data._id%>/portrait.jpg">
               <span><%=data.title %></span>
-              <% if (logStatus) { %>
-                <% if (data.isLike) { %>
-                  <span class="like-icon do-like"></span>
+              <div class="like-collect">              
+                <% if (logStatus) { %>
+                  <% if (data.isLike) { %>
+                    <span class="like-icon do-like" data-id=<%=data._id%>></span>
+                  <% } else { %>
+                  <span class="like-icon donot-like" data-id=<%=data._id%>></span>
+                  <% } %>
+                    
                 <% } else { %>
-                <span class="like-icon donot-like"></span>
+                  <span class="like-icon donot-like" data-id=<%=data._id%>></span>
                 <% } %>
-                <% if (data.likes > 0) { %>
-                  <span class="like-count"><%= data.likes %></span>
-                <% } %>
-              <% } else { %>
-                <span class="like-icon donot-like"></span>
-              <% } %>
+                <span class="like-count"><%= data.likes %></span>
+              </div>
           </p>
 
           <h2 class="info__title anchor-point" id="host-info">主人信息</h2>

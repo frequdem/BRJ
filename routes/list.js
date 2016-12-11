@@ -43,14 +43,12 @@ router.get('/list', function(req, res, next) {
 
 			datas[1].like.map(function(item) {
 				data.forEach(function(value, index, arr) {
-					if (item === value._id.toString()) {
-						console.log(index);										
+					if (item === value._id.toString()) {						
 						data[index].like = true;
 					}					
 				})
 			})
 		}
-		console.log(data);
 		res.render('list/list', {list: data, logStatus: lgSt});
 	}).catch(function(err) {
 		console.log(err);

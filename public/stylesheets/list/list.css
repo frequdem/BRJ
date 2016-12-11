@@ -89,6 +89,7 @@ html {
 .like-icon {
 	float: right;
 	margin-top: 0.22rem;
+	display: inline-block;	
 	width: 0.24rem;
 	height: 0.24rem;
 }
