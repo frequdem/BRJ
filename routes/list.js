@@ -16,7 +16,7 @@ router.get('/list', function(req, res, next) {
 	var lgSt = checkSession(req);
 
 	Promise.all([new Promise(function(resolve, reject){
-		House.find({}, function(err, data) {
+		House.find({}).lean().exec( function(err, data) {
 			if (err) {
 				reject(err);
 			} else {
@@ -34,21 +34,23 @@ router.get('/list', function(req, res, next) {
 			})
 		} else {			
 			resolve();
+
 		}
 	})]).then(function(datas) {
-
-		data = Object.assign({}, datas[0]);
+		data = datas[0]; 
+		
 		if (!!datas[1] && datas[1].like.length) {
-			datas[1].like.map(function(item) {				
-				data.foreach(function(value, index, arr) {
-					if (item === value.id) {						
+
+			datas[1].like.map(function(item) {
+				data.forEach(function(value, index, arr) {
+					if (item === value._id.toString()) {
+						console.log(index);										
 						data[index].like = true;
-						console.log(data[index])
 					}					
 				})
 			})
 		}
-		console.log( data );
+		console.log(data);
 		res.render('list/list', {list: data, logStatus: lgSt});
 	}).catch(function(err) {
 		console.log(err);

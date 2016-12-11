@@ -11,7 +11,7 @@
 		$('.info-tabs__tab').click(function() {
 				$('html,body').scrollTo({
 					toT: $($(this).find('a').data('href')).offset().top,
-					durTime: 150
+					durTime: 200
 				});	
 				// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
 			})

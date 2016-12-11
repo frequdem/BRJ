@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 //链接数据库
 var dbConnection = require('./models/connection');
 var logins = require('./routes/login');
-var mains = require('./routes/mains');
+var lists = require('./routes/list');
 var singles = require('./routes/single');
 var panos = require('./routes/pano');
 var backends = require('./routes/backend');
@@ -39,7 +39,7 @@ app.use('/single', singles);
 app.use('/backend', backends);
 app.use('/pano', panos);
 app.use('/common', commons);
-app.use('/', mains);
+app.use('/', lists);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,1 +1,96 @@
-!function(o){function n(e){if(t[e])return t[e].exports;var i=t[e]={exports:{},id:e,loaded:!1};return o[e].call(i.exports,i,i.exports,n),i.loaded=!0,i.exports}var t={};return n.m=o,n.c=t,n.p="",n(0)}([function(o,n,t){var e=t(1);e(".logged"),$(document).ready(function(){$("i.unlogged").on("tap",function(){location.href="/login"}),$(".goBack").on("tap",function(){location.href="/list"}),$(".info-tabs__tab").click(function(){$("html,body").scrollTo({toT:$($(this).find("a").data("href")).offset().top,durTime:150})})})},function(o,n){var t=function(o){$(document).ready(function(){var n=$(".mask--myinfo"),t=$(".myinfo");$(o).tap(function(){"none"===n.css("display")?(n.show(),t.animate({width:"80%"},200,"ease-out")):(n.hide(),t.animate({width:"0"},200,"ease-out"))}),n.on("touchmove",function(o){o.preventDefault()}),$(t.prop("contentWindow").document).on("touchmove",function(o){o.preventDefault()})})};o.exports=t}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var initMyInfo = __webpack_require__(1);
+	initMyInfo('.logged');
+	$(document).ready(function () {
+		$('i.unlogged').on('tap', function () {
+			location.href = '/login';
+		});
+		$('.goBack').on('tap', function () {
+			location.href = '/list';
+		});
+
+		$('.info-tabs__tab').click(function () {
+			$('html,body').scrollTo({
+				toT: $($(this).find('a').data('href')).offset().top,
+				durTime: 200
+			});
+			// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
+		});
+	});
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	//传入的参数为触发“我的”面板的元素
+	var initMyInfo = function (selector) {
+		$(document).ready(function () {
+			var maskJq = $('.mask--myinfo');
+			var myinfoJq = $('.myinfo');
+			$(selector).tap(function () {
+				if (maskJq.css('display') === 'none') {
+					maskJq.show();
+					myinfoJq.animate({ width: '80%' }, 200, 'ease-out');
+				} else {
+					maskJq.hide();
+					myinfoJq.animate({ width: '0' }, 200, 'ease-out');
+				}
+			});
+
+			maskJq.on('touchmove', function (e) {
+				e.preventDefault();
+			});
+			$(myinfoJq.prop('contentWindow').document).on('touchmove', function (e) {
+				e.preventDefault();
+			});
+		});
+	};
+	module.exports = initMyInfo;
+
+/***/ }
+/******/ ]);

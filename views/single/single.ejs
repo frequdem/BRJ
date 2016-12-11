@@ -31,6 +31,18 @@
 
           <p class="portrait-name"><img class="info__portrait" src="/resource/<%=data._id%>/portrait.jpg">
               <span><%=data.title %></span>
+              <% if (logStatus) { %>
+                <% if (data.isLike) { %>
+                  <span class="like-icon do-like"></span>
+                <% } else { %>
+                <span class="like-icon donot-like"></span>
+                <% } %>
+                <% if (data.likes > 0) { %>
+                  <span class="like-count"><%= data.likes %></span>
+                <% } %>
+              <% } else { %>
+                <span class="like-icon donot-like"></span>
+              <% } %>
           </p>
 
           <h2 class="info__title anchor-point" id="host-info">主人信息</h2>

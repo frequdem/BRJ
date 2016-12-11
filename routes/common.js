@@ -10,17 +10,17 @@ router.get('/like', function(req, res, next) {
 
 	if (req.query.type === '0') { //不喜欢
 		Promise.all([new Promise(function(resolve, reject) {
-			House.findOneAndUpdate({id: mongoose.Schema.Types.ObjectId(req.query.id)}, {$inc: {likes: -1}}, function(err, data) {
+			House.findOneAndUpdate({_id: req.query.id}, {$inc: {likes: -1}}, function(err, data) {
 					if (err) {
-						reject();
+						reject(err);
 					} else {
 						resolve();
 					}
 			})
 		}),new Promise(function(resolve, reject) {
-				User.findOneAndUpdate({id: mongoose.Schema.Types.ObjectId(req.session.userId)}, {$pull: {like: req.query.id}}, function(err, data) {
+				User.findOneAndUpdate({_id: req.session.userId}, {$pull: {like: req.query.id}}, function(err, data) {
 					if (err) {
-						reject();
+						reject(err);
 					} else {
 						resolve();
 					}
@@ -28,28 +28,32 @@ router.get('/like', function(req, res, next) {
 			})	
 		]).then(function() {
 			res.json({status: 200, msg: '', result: {}});
-		})		
+		}).catch(function(err) {
+			console.log(err);
+		});	
 	} else {  //喜欢
-		Promise.all(new Promise(function(resolve, reject) {
-			House.findOneAndUpdate({id: mongoose.Schema.Types.ObjectId(req.query.id)}, {$inc: {likes: 1}}, function(err, data) {
+		Promise.all([new Promise(function(resolve, reject) {
+			House.findOneAndUpdate({_id: req.query.id}, {$inc: {likes: 1}},{new: true}, function(err, data) {
 					if (err) {
-						reject();
+						reject(err);
 					} else {
 						resolve();
 					}
 			})
 		}), new Promise(function(resolve, reject) {
-				User.findOneAndUpdate({id: mongoose.Schema.Types.ObjectId(req.session.userId)}, {$addToSet: {like: req.query.id}}, function(err, data) {
+				User.findOneAndUpdate({_id: req.session.userId}, {$addToSet: {like: req.query.id}}, function(err, data) {
 					if (err) {
-						reject();
+						reject(err);
 					} else {
 						resolve();
 					}
 				})
 			})
-		).then(function() {
+		]).then(function() {
 			res.json({status: 200, msg: '', result: {}});
-		}).catch()		
+		}).catch(function(err) {
+			console.log(err);
+		});		
 	}   
 });
 

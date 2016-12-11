@@ -20,17 +20,21 @@
         <% if(list) { %>
         <ul>
             <% list.forEach(function(item) { %>
-                <li  class="fy-item" data-id=<%=item.id%>>
+                <li  class="fy-item" data-id=<%=item._id.toString()%>>
                     <div class="fy-item-cover">
-                        <img src="/resource/<%=item.id%>/cover.jpg" class="fy-item-img">
+                        <img src="/resource/<%=item._id.toString()%>/cover.jpg" class="fy-item-img">
                     </div>                
                     <div class="fy-item-info clearfix">
-                        <img class="fy-item-portrait" src="/resource/<%=item.id%>/portrait.jpg">                                       
+                        <img class="fy-item-portrait" src="/resource/<%=item._id.toString()%>/portrait.jpg">                                       
                         <div class="fy-item-textinfo">
                             <p class="fy-item-name"><%=item.title%></p>
                             <p class="fy-item-detail"><i class="iconfont info-icon">&#xe602;</i><span><%=item.type%></span><i class="iconfont info-icon">&#xe682;</i><span>装修<%=item.dec_cost%>万</span><i class="iconfont info-icon">&#xe635;</i><span><%=item.province%> <%=item.county%></span></p>                           
                         </div>
-                        <span class="like-icon donot-like"></span>
+                        <% if (item.like) { %>
+                            <span class="like-icon do-like"></span>
+                        <% } else { %>
+                            <span class="like-icon donot-like"></span>
+                        <% } %>
                     </div>  
                 </li>
             <% }) %>
