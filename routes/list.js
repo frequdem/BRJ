@@ -25,7 +25,7 @@ router.get('/list', function(req, res, next) {
 		})
 	}), new Promise(function(resolve, reject) {
 		if (lgSt) {
-			User.findOne({id: mongoose.Schema.Types.ObjectId(req.session.userId)}, function(err, data) {
+			User.findOne({_id: req.session.userId}, function(err, data) {
 				if (err) {
 					reject(err);
 				} else {

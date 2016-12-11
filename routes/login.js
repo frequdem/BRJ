@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   	res.render('login/login',{referer: req.headers.referer});
 });
 router.get('/myInfo', function(req, res, next) {
-	User.findOne({id: mongoose.Schema.Types.ObjectId(req.session.userId)}, function(err, data) {
+	User.findOne({_id: req.session.userId}, function(err, data) {
 		res.render('login/myInfo', {data: data});
 	})	
 });
