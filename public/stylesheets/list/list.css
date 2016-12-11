@@ -87,10 +87,8 @@ html {
 	margin-left: -0.06rem;
 }
 .like-icon {
-	position: absolute;
-	z-index: 10;
-	right: 0.1rem;
-	bottom: 0.05rem;
+	float: right;
+	margin-top: 0.22rem;
 	width: 0.24rem;
 	height: 0.24rem;
 }

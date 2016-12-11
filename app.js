@@ -12,6 +12,7 @@ var mains = require('./routes/mains');
 var singles = require('./routes/single');
 var panos = require('./routes/pano');
 var backends = require('./routes/backend');
+var commons = require('./routes/common');
 var app = express();
 
 var session = require('express-session');
@@ -37,6 +38,7 @@ app.use('/login', logins);
 app.use('/single', singles);
 app.use('/backend', backends);
 app.use('/pano', panos);
+app.use('/common', commons);
 app.use('/', mains);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

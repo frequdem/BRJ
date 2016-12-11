@@ -44,6 +44,10 @@ var houseSchema = new mongoose.Schema({
 	type: {
 		type: String,
 		require: true		
+	},
+	likes: {
+		type: Number,
+		default: 0
 	}
 });
 var House = mongoose.model('house',houseSchema);

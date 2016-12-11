@@ -7,8 +7,7 @@ $(document).ready(function() {
 					parent.location.reload();
 				} else if (r.status === 400) {
 					alert(r.msg);
-				}
-				
+				}				
 			}
 		})
 	});
