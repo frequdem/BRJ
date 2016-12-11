@@ -16,6 +16,11 @@ var initMyInfo = function(selector) {
 		maskJq.on('touchmove', function(e) {
 			e.preventDefault();
 		});
+		maskJq.tap(function() {
+			maskJq.hide();			
+			myinfoJq.animate({width: '0'}, 200, 'ease-out');
+		});
+		
 		$(myinfoJq.prop('contentWindow').document).on('touchmove', function(e) {
 			e.preventDefault();
 		});
