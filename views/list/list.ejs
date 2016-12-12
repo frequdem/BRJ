@@ -1,10 +1,12 @@
 <% include ../head.ejs %>
         <title>别人家</title>
         <link rel='stylesheet' href='/stylesheets/list/list.css' />
-        <script type="text/javascript" src="/javascripts/js/list/list.js"></script>
+
     </head>
     <body>
-        <% include ../myInfo.ejs %>      
+        <% if (logStatus) {%>
+            <% include ../myInfo.ejs %> 
+        <% } %>     
         <div class="header"><a><span class="others">别人</span><span class="home-word">家</span></a>
             <span class="login-area">
                 <% if(!logStatus) {%>
@@ -41,5 +43,9 @@
         </ul>
         <% } %>
       </div>
+      <script type="text/javascript">
+          var logStatus = <%=logStatus%>;
+      </script>
+      <script type="text/javascript" src="/javascripts/js/list/list.js"></script>
     </body>
 </html>

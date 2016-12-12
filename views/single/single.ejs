@@ -1,10 +1,12 @@
 <% include ../head.ejs %>
       <title><%=data.title%></title>
       <link rel='stylesheet' href='/stylesheets/single/single.css' />
-      <script type="text/javascript" src="/javascripts/js/single/single.js"></script>
+
     </head>
     <body>
-        <% include ../myInfo.ejs %>  
+        <% if (logStatus) {%>
+          <% include ../myInfo.ejs %> 
+        <% } %> 
         <div class="header"><i class="iconfont goBack">&#xe61d;</i><a><span class="others">别人</span><span class="home-word">家</span></a>
         	<span class="login-area">
                 <% if(!logStatus) {%>
@@ -146,6 +148,10 @@
             <p>asdf</p>
             <hr class="seperator">
         </div>   
+        <script type="text/javascript">
+          var logStatus = <%=logStatus%>;
+        </script>
+        <script type="text/javascript" src="/javascripts/js/single/single.js"></script>
     </body>
 </html>
     

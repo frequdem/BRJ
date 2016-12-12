@@ -1,5 +1,5 @@
 	var initMyInfo = require('../component/myInfo');
-	initMyInfo('.logged');
+	initMyInfo('.logged', logStatus);
 	$(document).ready(function() {
 		$('i.unlogged').on('tap',function() {
 			location.href = '/login';
@@ -11,7 +11,7 @@
 		$('.info-tabs__tab').click(function() {
 				$('html,body').scrollTo({
 					toT: $($(this).find('a').data('href')).offset().top,
-					durTime: 200
+					durTime: 200,
 				});	
 				// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
 			})
