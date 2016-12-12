@@ -42,14 +42,12 @@ html {
 	float: right;
 	width: 0.5rem;
 	height: 0.5rem;
-	line-height: 0.5rem;
 	font-size: 0.3rem;
 	text-align: center;
 	background: #76B3B4;
 }
 .header .login-img.logged{
 	font-size: 0.24rem;
-	padding-top: 0.1rem;
 }
 
 .content {
