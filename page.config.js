@@ -7,7 +7,8 @@ var data = {
 	"single/single": "single/single.js",
 	"pano/pano": "pano/pano.js",
 	"backend/houseInfo": "backend/houseInfo.js",
-	"login/myInfo": "login/myInfo.js"
+	"login/myInfo": "login/myInfo.js",
+	"login/myCollect": "login/myCollect"
 }
 var dataExport = {};
 for(var key in data) {

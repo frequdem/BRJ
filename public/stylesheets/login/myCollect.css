@@ -13,20 +13,12 @@ html {
 	left: 0;
 	top: 0;
 }
-.header .others {
-	margin-left: 0.2rem;
+.header .my-text {
+	font-size: 0.2rem;
 }
-.header .home-word {
+.header .collect-text {
 	color: #76B3B4;
-}
-
-.login-area {
-	position: absolute;
-	width: 1.4rem;
-	height: 0.5rem;
-	right: 0;
-	top: 0;
-	background: #686868;
+	font-size: 0.2rem;
 }
 .split-img {
 	display: inline-block;
@@ -37,19 +29,11 @@ html {
 	background-size: contain;
 
 }
-.header .login-img {
-	display: inline-block;
-	float: right;
-	width: 0.5rem;
-	height: 0.5rem;
-	font-size: 0.3rem;
-	text-align: center;
-	background: #76B3B4;
+.goBack {
+	margin-left: 0.1rem;
+	font-size: 0.26rem;
+	color: #fff;
 }
-.header .login-img.logged{
-	font-size: 0.24rem;
-}
-
 .content {
 	padding-top: 0.55rem;
 }

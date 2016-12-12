@@ -30,8 +30,11 @@ html, body {
 .my-option {
 	height: 0.16rem;
 	line-height: 0.16rem;
+}
+.my-option a {
 	font-size: 0.16rem;
 	color: #666;
+	text-decoration: none;
 }
 .option-icon {
 	display: inline-block;
@@ -47,6 +50,6 @@ html, body {
 	display: inline-block;
 	margin-top: 0.9rem;
 	font-size: 0.16rem;
-	color: #666;
+	color: #999;
 	text-decoration: none;
 }

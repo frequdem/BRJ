@@ -11,6 +11,11 @@ $(document).ready(function() {
 			}
 		})
 	});
+
+	$('.my-collect').tap(function() {
+		window.parent.location.href = '/login/myCollect';
+	});
+
 	$('body').on('touchmove', function(e) {
 			e.preventDefault();
 		});

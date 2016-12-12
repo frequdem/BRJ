@@ -48,3 +48,11 @@ input[type='text'], input[type='password']{
     background: url('/images/donot_like.png');
     background-size: contain;
 }
+.do-collect {
+    background: url('/images/do_collect.png');
+    background-size: contain;
+}
+.donot-collect {
+    background: url('/images/donot_collect.png');
+    background-size: contain;
+}

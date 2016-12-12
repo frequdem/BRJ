@@ -10,8 +10,17 @@ var User = require('../models/user');
 router.get('/single', function(req, res, next) {
 	var data;
 	var lgSt = checkSession(req);
-	House.findById(req.query.id, function(err, dataTemp) {
-		data = dataTemp.toObject();
+
+	//增加一次浏览
+	House.findOneAndUpdate({_id: req.query.id}, {$inc: {watchs: 1}}, function(err) {
+		if (err) {
+			console.log(err);
+		}
+	})
+
+	//响应
+	House.findById(req.query.id).lean().exec(function(err, dataTemp) {
+		data = dataTemp;
 		Promise.all(data.hosts.map(function(id) {
 			return new Promise(function(resolve, reject) {
 				Host.findById(id).lean().exec(function(err, data){					
@@ -25,6 +34,14 @@ router.get('/single', function(req, res, next) {
 								for(var i = 0; i < me.like.length; i++) {
 									if (me.like[i] === req.query.id) {
 										data.isLike = true;
+										break;
+									}
+								}
+							}
+						if (me.collect.length) {
+								for(var i = 0; i < me.collect.length; i++) {
+									if (me.collect[i] === req.query.id) {
+										data.isCollect = true;
 										break;
 									}
 								}

@@ -33,7 +33,19 @@
 
           <p class="portrait-name"><img class="info__portrait" src="/resource/<%=data._id%>/portrait.jpg">
               <span><%=data.title %></span>
-              <div class="like-collect">              
+              <div class="like-collect"> 
+                <% if (logStatus) { %>
+                  <% if (data.isCollect) { %>
+                    <span class="collect-icon do-collect" data-id=<%=data._id%>></span>
+                  <% } else { %>
+                  <span class="collect-icon donot-collect" data-id=<%=data._id%>></span>
+                <% } %>
+                    
+                <% } else { %>
+                  <span class="collect-icon donot-collect" data-id=<%=data._id%>></span>
+                <% } %>
+                <span class="icon-count collect-count"><%= data.collects %></span>
+           
                 <% if (logStatus) { %>
                   <% if (data.isLike) { %>
                     <span class="like-icon do-like" data-id=<%=data._id%>></span>
@@ -44,7 +56,9 @@
                 <% } else { %>
                   <span class="like-icon donot-like" data-id=<%=data._id%>></span>
                 <% } %>
-                <span class="like-count"><%= data.likes %></span>
+                <span class="icon-count like-count"><%= data.likes %></span>
+                <i class="iconfont watch-icon">&#xe62e;</i>
+                <span class="icon-count"><%= data.watchs %></span>
               </div>
           </p>
 

@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var checkSession = require('../assist/checkSession');
 var mongoose = require('mongoose');
 var User = require('../models/user');
-
+var House = require('../models/house');
 router.get('/', function(req, res, next) {
   	res.render('login/login',{referer: req.headers.referer});
 });
@@ -21,6 +21,24 @@ router.get('/logout', function(req, res, next) {
 		}
 	});
 	
+})
+
+//我的收藏
+router.get('/myCollect', function(req, res, next) {
+	var data;
+	User.findOne({_id: req.session.userId}, function(err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					House.find({_id: {$in: data.collect}}).exec(function(err, data) {
+						if (err) {
+							console.log(err);
+						} else {
+							res.render('login/myCollect', {list: data});
+						}		
+				 	})
+				}	
+			})
 })
 
 router.post('/signIn', function(req, res, next) {

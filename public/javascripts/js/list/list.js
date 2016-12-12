@@ -97,6 +97,7 @@
 				var myinfoJq = $('.myinfo');
 				$(selector).tap(function () {
 					if (maskJq.css('display') === 'none') {
+						myinfoJq.attr('src', myinfoJq.attr('src'));
 						maskJq.show();
 						myinfoJq.animate({ width: '80%' }, 200, 'ease-out');
 					} else {

@@ -61,6 +61,42 @@
 			});
 			// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
 		});
+
+		//收藏
+		$('.collect-icon').on('tap', function (e) {
+			e.stopPropagation();
+			if ($('.login-img').hasClass('unlogged')) {
+				location.href = '/login';
+			} else {
+				var _thisJq = $(this);
+				var _likeCountJq = $('.collect-count');
+				if (_thisJq.hasClass('do-collect')) {
+					_thisJq.removeClass('do-collect').addClass('donot-collect');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) - 1);
+					$.ajax({
+						url: '/common/collect',
+						type: 'GET',
+						data: {
+							type: '0',
+							id: _thisJq.data('id')
+						}
+					});
+				} else if (_thisJq.hasClass('donot-collect')) {
+					_thisJq.removeClass('donot-collect').addClass('do-collect');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) + 1);
+					$.ajax({
+						url: '/common/collect',
+						type: 'GET',
+						data: {
+							type: '1',
+							id: _thisJq.data('id')
+						}
+					});
+				}
+			}
+		});
+
+		//点赞
 		$('.like-icon').on('tap', function (e) {
 			e.stopPropagation();
 			if ($('.login-img').hasClass('unlogged')) {
@@ -107,6 +143,7 @@
 				var myinfoJq = $('.myinfo');
 				$(selector).tap(function () {
 					if (maskJq.css('display') === 'none') {
+						myinfoJq.attr('src', myinfoJq.attr('src'));
 						maskJq.show();
 						myinfoJq.animate({ width: '80%' }, 200, 'ease-out');
 					} else {

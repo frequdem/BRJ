@@ -13,7 +13,11 @@ var userSchema = new mongoose.Schema({
 		require: true
 	},
 	like: {
-		type:[String],
+		type: [String],
+		default: []
+	},
+	collect: {
+		type: [String],
 		default: []
 	}
 

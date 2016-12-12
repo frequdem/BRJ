@@ -48,6 +48,14 @@ var houseSchema = new mongoose.Schema({
 	likes: {
 		type: Number,
 		default: 0
+	},
+	watchs: {
+		type: Number,
+		default: 0
+	},
+	collects: {
+		type: Number,
+		default: 0
 	}
 });
 var House = mongoose.model('house',houseSchema);
