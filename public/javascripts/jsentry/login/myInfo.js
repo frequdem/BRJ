@@ -4,7 +4,7 @@ $(document).ready(function() {
 			url: '/login/logout',
 			success: function(r) {
 				if (r.status === 200) {
-					parent.location.reload();
+				       window.parent.location.reload();
 				} else if (r.status === 400) {
 					alert(r.msg);
 				}				
