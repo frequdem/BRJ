@@ -89,13 +89,6 @@ html {
 	color: #aaa;
 	margin-left: -0.06rem;
 }
-.like-icon {
-	float: right;
-	margin-top: 0.22rem;
-	display: inline-block;	
-	width: 0.24rem;
-	height: 0.24rem;
-}
 .fy-item-cover {
     position: relative;
 }
@@ -103,4 +96,24 @@ html {
 	font-size: 0.12rem;
 	margin-right: 0.01rem;
 	margin-left: 0.06rem;
+}
+.watch-area {
+	float: right;
+	margin-top: 0.26rem;
+	display: inline-block;	
+	color: #76B3B4;
+}
+.icon-count {
+	margin-left: 0.02rem;
+	text-align: top;
+	font-size: 0.12rem;
+}
+.watch-icon {
+	display: inline-block;
+	margin-top: 0.02rem;
+	width: 0.2rem;
+	height: 0.2rem;
+	line-height: 0.2rem;
+	font-size: 0.18rem;
+
 }
