@@ -63,18 +63,18 @@ html {
 	width: 100%;
 }
 .fy-item-info {
-	padding: 0.08rem;
+	padding: 0.08rem 0.04rem 0.08rem 0.08rem;
 }
 .fy-item-portrait {
 	float: left;
-	margin-right: 
+	margin-right: 0;
 	height: 0.42rem;
 	width: 0.42rem;
 	border-radius: 0.21rem;
 }
 .fy-item-textinfo {
 	float: left;
-	margin-left: 0.15rem;
+	margin-left: 0.1rem;
 	margin-top: 0.0rem;
 }
 .fy-item-name {
@@ -100,6 +100,7 @@ html {
 .watch-area {
 	float: right;
 	margin-top: 0.26rem;
+	margin-right: 0.01rem;
 	display: inline-block;	
 	color: #76B3B4;
 }
@@ -114,7 +115,7 @@ html {
 	width: 0.2rem;
 	height: 0.2rem;
 	line-height: 0.2rem;
-	font-size: 0.18rem;
+	font-size: 0.17rem;
 	text-shadow: 0;
 
 }

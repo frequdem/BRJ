@@ -6,11 +6,12 @@ var initMyInfo = function(selector, bool) {
 			var myinfoJq = $('.myinfo');
 			$(selector).tap(function() {
 				if (maskJq.css('display') === 'none') {
-					myinfoJq.attr('src', myinfoJq.attr('src'));
+					myinfoJq.attr('src', '/login/myInfo');
 					maskJq.show();
 					myinfoJq.animate({width: '80%'}, 200, 'ease-out');
 				} else {
-					maskJq.hide();			
+					maskJq.hide();
+					myinfoJq.attr('src', '');		
 					myinfoJq.animate({width: '0'}, 200, 'ease-out');
 				}
 			});
