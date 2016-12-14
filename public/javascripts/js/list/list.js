@@ -1,1 +1,135 @@
-!function(o){function t(e){if(n[e])return n[e].exports;var a=n[e]={exports:{},id:e,loaded:!1};return o[e].call(a.exports,a,a.exports,t),a.loaded=!0,a.exports}var n={};return t.m=o,t.c=n,t.p="",t(0)}([function(o,t,n){var e=n(1);e(".logged",logStatus),$(document).ready(function(){$("i.unlogged").on("tap",function(){location.href="/login"}),$(".like-icon").on("tap",function(o){if(o.stopPropagation(),$(".login-img").hasClass("unlogged"))location.href="/login";else{var t=$(this);t.hasClass("do-like")?(t.removeClass("do-like").addClass("donot-like"),$.ajax({url:"/common/like",type:"GET",data:{type:"0",id:t.parents(".fy-item").data("id")}})):t.hasClass("donot-like")&&(t.removeClass("donot-like").addClass("do-like"),$.ajax({url:"/common/like",type:"GET",data:{type:"1",id:t.parents(".fy-item").data("id")}}))}}),$(".fy-item").on("tap",function(){var o="/single/single?id="+$(this).data("id");location.href=o})})},function(o,t){var n=function(o,t){t&&$(document).ready(function(){var t=$(".mask--myinfo"),n=$(".myinfo");$(o).tap(function(){"none"===t.css("display")?(n.attr("src","/login/myInfo"),t.show(),n.animate({width:"80%"},200,"ease-out")):(t.hide(),n.attr("src",""),n.animate({width:"0"},200,"ease-out"))}),t.on("touchmove",function(o){o.preventDefault()}),t.tap(function(){t.hide(),n.animate({width:"0"},200,"ease-out")}),$(n.prop("contentWindow").document).on("touchmove",function(o){o.preventDefault()})})};o.exports=n}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var initMyInfo = __webpack_require__(1);
+	initMyInfo('.logged', logStatus);
+	$(document).ready(function () {
+		$('i.unlogged').on('tap', function () {
+			location.href = '/login';
+		});
+		$('.like-icon').on('tap', function (e) {
+			e.stopPropagation();
+			if ($('.login-img').hasClass('unlogged')) {
+				location.href = '/login';
+			} else {
+				var _thisJq = $(this);
+				if (_thisJq.hasClass('do-like')) {
+					_thisJq.removeClass('do-like').addClass('donot-like');
+					$.ajax({
+						url: '/common/like',
+						type: 'GET',
+						data: {
+							type: '0',
+							id: _thisJq.parents('.fy-item').data('id')
+						}
+					});
+				} else if (_thisJq.hasClass('donot-like')) {
+					_thisJq.removeClass('donot-like').addClass('do-like');
+					$.ajax({
+						url: '/common/like',
+						type: 'GET',
+						data: {
+							type: '1',
+							id: _thisJq.parents('.fy-item').data('id')
+						}
+					});
+				}
+			}
+		});
+		$('.fy-item').on('tap', function () {
+			var path = "/single/single?id=" + $(this).data('id');
+			location.href = path;
+		});
+	});
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	//传入的参数为触发“我的”面板的元素, 是否载入了我的面板
+	var initMyInfo = function (selector, bool) {
+		if (bool) {
+			$(document).ready(function () {
+				var maskJq = $('.mask--myinfo');
+				var myinfoJq = $('.myinfo');
+
+				$(selector).tap(function () {
+					if (maskJq.css('display') === 'none') {
+						maskJq.show();
+						$.ajax({
+							url: '/login/getCollectCnt',
+							type: 'get',
+							success: function (r) {
+								$($('.myinfo').contents()[0]).find('#mycollect-count').text('（' + r.count + '）');
+							}
+
+						});
+						myinfoJq.animate({ width: '80%' }, 200, 'ease-out');
+					} else {
+						maskJq.hide();
+						$($('.myinfo').contents()[0]).find('#mycollect-count').text('');
+						myinfoJq.animate({ width: '0' }, 200, 'ease-out');
+					}
+				});
+
+				maskJq.on('touchmove', function (e) {
+					e.preventDefault();
+				});
+				maskJq.tap(function () {
+					maskJq.hide();
+					myinfoJq.animate({ width: '0' }, 200, 'ease-out');
+				});
+
+				$(myinfoJq.prop('contentWindow').document).on('touchmove', function (e) {
+					e.preventDefault();
+				});
+			});
+		}
+	};
+	module.exports = initMyInfo;
+
+/***/ }
+/******/ ]);

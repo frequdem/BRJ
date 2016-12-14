@@ -41,6 +41,7 @@ router.get('/myCollect', function(req, res, next) {
 			})
 })
 
+//登录
 router.post('/signIn', function(req, res, next) {
 	var username = req.body.username;
 	var password = req.body.password;
@@ -58,6 +59,7 @@ router.post('/signIn', function(req, res, next) {
 	})
 })
 
+//注册
 router.post('/signUp', function(req, res, next) {
 	var username = req.body.username;
 	var password = req.body.password;
@@ -77,9 +79,19 @@ router.post('/signUp', function(req, res, next) {
 			    req.session.userId = user.id;	
 			    res.json({status: 200, msg: '', result: {}});
 			}
-	})
+	}) 
+})
 
-	 
+//获取收藏数
+router.get('/getCollectCnt', function(req, res, next) {
+	var data;
+	User.findOne({_id: req.session.userId}, function(err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					res.json({count: data.collect.length});			
+				}	
+			})
 })
 
 module.exports = router;

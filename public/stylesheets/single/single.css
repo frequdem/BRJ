@@ -166,31 +166,22 @@ body {
 	color: #76B3B4;
 }
 .like-icon {
-	display: inline-block;	
+	display: inline-block;
+	margin-left: 0.05rem;	
 	width: 0.2rem;
 	height: 0.2rem;
 }
+
 .icon-count {
 	text-align: top;
 	font-size: 0.12rem;
 }
-.watch-icon {
-	display: inline-block;
-	margin-top: 0.02rem;
-	width: 0.2rem;
-	height: 0.2rem;
-	line-height: 0.2rem;
-	font-size: 0.21rem;
 
-}
 .collect-icon {
 	display: inline-block;
 	margin-top: -0.01rem;
 	width: 0.2rem;
 	height: 0.2rem;
-	line-height: 0.2rem;
-	font-size: 0.21rem;
-
 }
 .comment-input-area {
 	width: 100%;
@@ -225,6 +216,31 @@ color: #ccc;
 	border: none;
 	border-radius: 0.02rem;
 }
-hr.comments-seperator {
+hr.reply__seperator {
 	margin-top: 0.2rem;
+}
+hr.comments__seperator {
+
+	margin-top: 0.2rem;
+}
+.comments__username {
+	font-size: 0.15rem;
+	line-height: 0.26rem;
+	color: #76B3B4;
+}
+.comments__content {
+	line-height: 0.24rem;
+	font-size: 0.14rem;
+	color: #666;
+	margin-top: 0.02rem;
+	margin-bottom: 0.06rem;
+}
+.comments__time {
+	font-size: 0.12rem;
+	color: #ccc;
+}
+.comments__replay {
+	float: right;
+	color: #aaa;
+	font-size: 0.14rem;
 }

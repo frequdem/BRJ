@@ -4,14 +4,22 @@ var initMyInfo = function(selector, bool) {
 		$(document).ready(function() {
 			var maskJq = $('.mask--myinfo');
 			var myinfoJq = $('.myinfo');
+			
 			$(selector).tap(function() {
 				if (maskJq.css('display') === 'none') {
-					myinfoJq.attr('src', '/login/myInfo');
 					maskJq.show();
+					$.ajax({
+						url: '/login/getCollectCnt',
+						type: 'get',
+						success: function(r) {
+							$($('.myinfo').contents()[0]).find('#mycollect-count').text('（' + r.count + '）');
+						}
+
+					})
 					myinfoJq.animate({width: '80%'}, 200, 'ease-out');
 				} else {
 					maskJq.hide();
-					myinfoJq.attr('src', '');		
+					$($('.myinfo').contents()[0]).find('#mycollect-count').text('');
 					myinfoJq.animate({width: '0'}, 200, 'ease-out');
 				}
 			});
