@@ -85,4 +85,16 @@
 			}
 
 		});
+
+		//获取评论
+		$.ajax({
+			url: '/comment/getComments',
+			type: 'GET',
+			data: {
+				houseId: $('#houseId').val()
+			},
+			success: function(r) {
+				console.log(r);
+			}
+		})
 	})

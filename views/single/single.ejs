@@ -7,6 +7,7 @@
         <% if (logStatus) {%>
           <% include ../myInfo.ejs %> 
         <% } %> 
+        <input type="hidden" value=<%=data._id%> id="houseId">
         <div class="header"><i class="iconfont goBack">&#xe61d;</i><a><span class="others">别人</span><span class="home-word">家</span></a>
         	<span class="login-area">
                 <% if(!logStatus) {%>

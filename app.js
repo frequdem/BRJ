@@ -13,6 +13,7 @@ var singles = require('./routes/single');
 var panos = require('./routes/pano');
 var backends = require('./routes/backend');
 var commons = require('./routes/common');
+var comments = require('./routes/comment');
 var app = express();
 
 var session = require('express-session');
@@ -39,6 +40,7 @@ app.use('/single', singles);
 app.use('/backend', backends);
 app.use('/pano', panos);
 app.use('/common', commons);
+app.use('/comment', comments);
 app.use('/', lists);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,1 +1,193 @@
-!function(t){function o(n){if(e[n])return e[n].exports;var a=e[n]={exports:{},id:n,loaded:!1};return t[n].call(a.exports,a,a.exports,o),a.loaded=!0,a.exports}var e={};return o.m=t,o.c=e,o.p="",o(0)}([function(t,o,e){var n=e(1);n(".logged",logStatus),$(document).ready(function(){$("i.unlogged").on("tap",function(){location.href="/login"}),$(".goBack").on("tap",function(){location.href="/list"}),$(".info-tabs__tab").click(function(){$("html,body").scrollTo({toT:$($(this).find("a").data("href")).offset().top,durTime:200})}),$(".collect-icon").on("tap",function(t){if(t.stopPropagation(),$(".login-img").hasClass("unlogged"))location.href="/login";else{var o=$(this),e=$(".collect-count");o.hasClass("do-collect")?(o.removeClass("do-collect").addClass("donot-collect"),e.text(parseInt(e.text())-1),$.ajax({url:"/common/collect",type:"GET",data:{type:"0",id:o.data("id")}})):o.hasClass("donot-collect")&&(o.removeClass("donot-collect").addClass("do-collect"),e.text(parseInt(e.text())+1),$.ajax({url:"/common/collect",type:"GET",data:{type:"1",id:o.data("id")}}))}}),$(".like-icon").on("tap",function(t){if(t.stopPropagation(),$(".login-img").hasClass("unlogged"))location.href="/login";else{var o=$(this),e=$(".like-count");o.hasClass("do-like")?(o.removeClass("do-like").addClass("donot-like"),e.text(parseInt(e.text())-1),$.ajax({url:"/common/like",type:"GET",data:{type:"0",id:o.data("id")}})):o.hasClass("donot-like")&&(o.removeClass("donot-like").addClass("do-like"),e.text(parseInt(e.text())+1),$.ajax({url:"/common/like",type:"GET",data:{type:"1",id:o.data("id")}}))}})})},function(t,o){var e=function(t,o){o&&$(document).ready(function(){var o=$(".mask--myinfo"),e=$(".myinfo");$(t).tap(function(){"none"===o.css("display")?(o.show(),$.ajax({url:"/login/getCollectCnt",type:"get",success:function(t){$($(".myinfo").contents()[0]).find("#mycollect-count").text("（"+t.count+"）")}}),e.animate({width:"80%"},200,"ease-out")):(o.hide(),$($(".myinfo").contents()[0]).find("#mycollect-count").text(""),e.animate({width:"0"},200,"ease-out"))}),o.on("touchmove",function(t){t.preventDefault()}),o.tap(function(){o.hide(),e.animate({width:"0"},200,"ease-out")}),$(e.prop("contentWindow").document).on("touchmove",function(t){t.preventDefault()})})};t.exports=e}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var initMyInfo = __webpack_require__(1);
+	initMyInfo('.logged', logStatus);
+	$(document).ready(function () {
+		$('i.unlogged').on('tap', function () {
+			location.href = '/login';
+		});
+		$('.goBack').on('tap', function () {
+			location.href = '/list';
+		});
+
+		$('.info-tabs__tab').click(function () {
+			$('html,body').scrollTo({
+				toT: $($(this).find('a').data('href')).offset().top,
+				durTime: 200
+			});
+			// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
+		});
+
+		//收藏
+		$('.collect-icon').on('tap', function (e) {
+			e.stopPropagation();
+			if ($('.login-img').hasClass('unlogged')) {
+				location.href = '/login';
+			} else {
+				var _thisJq = $(this);
+				var _likeCountJq = $('.collect-count');
+				if (_thisJq.hasClass('do-collect')) {
+					_thisJq.removeClass('do-collect').addClass('donot-collect');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) - 1);
+					$.ajax({
+						url: '/common/collect',
+						type: 'GET',
+						data: {
+							type: '0',
+							id: _thisJq.data('id')
+						}
+					});
+				} else if (_thisJq.hasClass('donot-collect')) {
+					_thisJq.removeClass('donot-collect').addClass('do-collect');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) + 1);
+					$.ajax({
+						url: '/common/collect',
+						type: 'GET',
+						data: {
+							type: '1',
+							id: _thisJq.data('id')
+						}
+					});
+				}
+			}
+		});
+
+		//点赞
+		$('.like-icon').on('tap', function (e) {
+			e.stopPropagation();
+			if ($('.login-img').hasClass('unlogged')) {
+				location.href = '/login';
+			} else {
+				var _thisJq = $(this);
+				var _likeCountJq = $('.like-count');
+				if (_thisJq.hasClass('do-like')) {
+					_thisJq.removeClass('do-like').addClass('donot-like');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) - 1);
+					$.ajax({
+						url: '/common/like',
+						type: 'GET',
+						data: {
+							type: '0',
+							id: _thisJq.data('id')
+						}
+					});
+				} else if (_thisJq.hasClass('donot-like')) {
+					_thisJq.removeClass('donot-like').addClass('do-like');
+					_likeCountJq.text(parseInt(_likeCountJq.text()) + 1);
+					$.ajax({
+						url: '/common/like',
+						type: 'GET',
+						data: {
+							type: '1',
+							id: _thisJq.data('id')
+						}
+					});
+				}
+			}
+		});
+
+		//获取评论
+		$.ajax({
+			url: '/comment/getComments',
+			type: 'GET',
+			data: {
+				houseId: $('#houseId').val()
+			},
+			success: function (r) {
+				console.log(r);
+			}
+		});
+	});
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	//传入的参数为触发“我的”面板的元素, 是否载入了我的面板
+	var initMyInfo = function (selector, bool) {
+		if (bool) {
+			$(document).ready(function () {
+				var maskJq = $('.mask--myinfo');
+				var myinfoJq = $('.myinfo');
+
+				$(selector).tap(function () {
+					if (maskJq.css('display') === 'none') {
+						maskJq.show();
+						$.ajax({
+							url: '/login/getCollectCnt',
+							type: 'get',
+							success: function (r) {
+								$($('.myinfo').contents()[0]).find('#mycollect-count').text('（' + r.count + '）');
+							}
+
+						});
+						myinfoJq.animate({ width: '80%' }, 200, 'ease-out');
+					} else {
+						maskJq.hide();
+						$($('.myinfo').contents()[0]).find('#mycollect-count').text('');
+						myinfoJq.animate({ width: '0' }, 200, 'ease-out');
+					}
+				});
+
+				maskJq.on('touchmove', function (e) {
+					e.preventDefault();
+				});
+				maskJq.tap(function () {
+					maskJq.hide();
+					myinfoJq.animate({ width: '0' }, 200, 'ease-out');
+				});
+
+				$(myinfoJq.prop('contentWindow').document).on('touchmove', function (e) {
+					e.preventDefault();
+				});
+			});
+		}
+	};
+	module.exports = initMyInfo;
+
+/***/ }
+/******/ ]);
