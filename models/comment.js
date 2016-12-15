@@ -5,17 +5,17 @@ var House = require('./house');
 var commentSchema = new mongoose.Schema({
 	from: {
 		type:mongoose.Schema.Types.ObjectId,
-		ref: 'User',
+		ref: 'user',
 		require: true
 	},
 	to: {
 		type:mongoose.Schema.Types.ObjectId,
-		ref: 'User',
-		require: true
+		ref: 'user',
+		default: mongoose.Schema.Types.ObjectId(0)
 	},
-	in: {
+	houseId: {
 		type:mongoose.Schema.Types.ObjectId,
-		ref: 'House',
+		ref: 'house',
 		require: true
 	},
 	content: {
@@ -25,8 +25,13 @@ var commentSchema = new mongoose.Schema({
 	time: {
 		type: Date,
 		require: true
+	},
+	status: {
+		type: Boolean,
+		require: true,
+		default: false
 	}
 
 });
-var User = mongoose.model('user',userSchema);
-module.exports = User;
+var Comment = mongoose.model('comment',commentSchema);
+module.exports = Comment;

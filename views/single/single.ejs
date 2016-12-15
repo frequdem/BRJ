@@ -118,18 +118,6 @@
                   <p><span class="comments__time">2016-12-13 11:32</span><span class="comments__replay">回复</span></p>
                   <hr class="seperator comments__seperator">
               </li>
-              <li class="comments__item">
-                  <p class="comments__info"><span class="comments__username">阿木</span></p>
-                  <p class="comments__content">我也是啊，本来还想买疏通液的，这下好了，明天又不用洗澡了</p>
-                  <p><span class="comments__time">2016-12-13 11:35</span><span class="comments__replay">回复</span></p>
-                  <hr class="seperator comments__seperator">
-              </li>
-              <li class="comments__item">
-                  <p class="comments__info"><span class="comments__username">面面</span></p>
-                  <p class="comments__content">多好！</p>
-                  <p><span class="comments__time">2016-12-13 11:42</span><span class="comments__replay">回复</span></p>
-                  <hr class="seperator comments__seperator">
-              </li>
             </ul>
         </div>
 
@@ -137,6 +125,27 @@
           var logStatus = <%=logStatus%>;
         </script>
         <script type="text/javascript" src="/javascripts/js/single/single.js"></script>
+        <script type="text/template" id="commentsTemplate"> 
+            {{ _.each(datas, function (item) { }}
+              <li class="comments__item">
+                  <p class="comments__info"><span class="comments__username">{{=item.from.nickname}}</span>
+                  {{ if (item.to && item.to._id) { }}
+                  <span class="reply__word">>></span>
+                  <span class="comments__username">{{=item.to.nickname}}</span></p>
+                  {{ } }}
+                  <p class="comments__content">{{=item.content}}</p>
+                  <p>
+                    <span class="comments__time">{{=item.time}}</span>
+                    {{ if (item.fromMe) { }}
+                    <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
+                    {{ }else { }}
+                    <a href="javascript:void(0);" class="comments__replay" data-id={{=item._id}}>回复</a>
+                    {{ } }}
+                  </p>
+                  <hr class="seperator comments__seperator">
+              </li>
+            {{ }); }}
+        </script>
     </body>
 </html>
     

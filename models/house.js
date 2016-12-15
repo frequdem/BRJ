@@ -19,7 +19,7 @@ var houseSchema = new mongoose.Schema({
 	},
 	hosts: {
 		type:[mongoose.Schema.Types.ObjectId],
-		ref: 'Host'
+		ref: 'host'
 	},
 	dec_time: {
 		type: Date,

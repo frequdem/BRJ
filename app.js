@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 //链接数据库
 var dbConnection = require('./models/connection');
+
+//路由
 var logins = require('./routes/login');
 var lists = require('./routes/list');
 var singles = require('./routes/single');
