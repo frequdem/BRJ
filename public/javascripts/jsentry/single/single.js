@@ -186,7 +186,8 @@
 					durTime: 50
 				});	
 			setTimeout(function() {
-					commentInputJq.focus().attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
+					document.getElementById('comment-input').focus();
+					commentInputJq.attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
 				}, 100);
 		});
 
