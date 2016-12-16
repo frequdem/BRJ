@@ -185,10 +185,9 @@
 					toT: $('#comments').offset().top,
 					durTime: 50
 				});	
-			setTimeout(function() {
-					document.getElementById('comment-input').focus();
-					commentInputJq.attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
-				}, 100);
+				setTimeout(function() {
+						commentInputJq.trigger('focus').attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
+					}, 100);
 		});
 
 		//评论框失去焦点(为了防止点击发送之前，发生blur事件，所以延迟执行)
