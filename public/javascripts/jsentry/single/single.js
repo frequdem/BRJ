@@ -109,6 +109,7 @@
 		$('.reply-btn').tap(function() {			
 			if (!logStatus) {
 				location.href = '/login';
+				return;
 			}
 			var commentContent = $('#comment-input');
 			var commentInputJq = $('#comment-input');
@@ -175,6 +176,7 @@
 		$('.comments').on('tap', '.comments__reply', function() {
 			if (!logStatus) {
 				location.href = '/login';
+				return;
 			}
 			$('#comment-input').trigger('focus').attr({'placeholder': '回复'+ $(this).data('from') + ':', "data-id": $(this).data('id')});	
 			//滚动到评论框
