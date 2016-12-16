@@ -178,12 +178,13 @@
 				location.href = '/login';
 				return;
 			}
-			$('#comment-input').trigger('focus').attr({'placeholder': '回复'+ $(this).data('from') + ':', "data-id": $(this).data('id')});	
 			//滚动到评论框
 			$('html,body').scrollTo({
 					toT: $('#comments').offset().top,
 					durTime: 50
-				});					
+				});	
+			$('#comment-input').trigger('focus').attr({'placeholder': '回复'+ $(this).data('from') + ':', "data-id": $(this).data('id')});	
+				
 		});
 
 		//评论框失去焦点(为了防止点击发送之前，发生blur事件，所以延迟执行)
