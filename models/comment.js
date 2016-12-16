@@ -25,11 +25,6 @@ var commentSchema = new mongoose.Schema({
 	time: {
 		type: Date,
 		require: true
-	},
-	status: {
-		type: Boolean,
-		require: true,
-		default: false
 	}
 
 });

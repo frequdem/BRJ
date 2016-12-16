@@ -92,6 +92,18 @@ router.get('/getCollectCnt', function(req, res, next) {
 					res.json({count: data.collect.length});			
 				}	
 			})
+});
+
+//获取收藏数
+router.get('/getMessageCnt', function(req, res, next) {
+	var data;
+	User.findOne({_id: req.session.userId}, function(err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					res.json({count: data.message.length});			
+				}	
+			})
 })
 
 module.exports = router;

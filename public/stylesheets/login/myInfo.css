@@ -53,3 +53,6 @@ html, body {
 	color: #999;
 	text-decoration: none;
 }
+.my-option a.message-tip{
+	color: #f40;
+}

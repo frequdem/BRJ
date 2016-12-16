@@ -107,8 +107,9 @@
 
 
 		var commentInputJq = $('#comment-input');
+		var replyBtnJq = $('.reply-btn');
 		//点击“发送”评论
-		$('.reply-btn').tap(function() {			
+		replyBtnJq.tap(function() {			
 			if (!logStatus) {
 				location.href = '/login';
 				return;
@@ -135,7 +136,9 @@
 				data: data,
 				success: function(datas) {
 					freshComments(datas);
-					commentInputJq.val('').attr({'placeholder': '你的看法...'}).removeAttr('data-id');	
+					//评论框清空，发送按钮置灰
+					commentInputJq.val('').attr({'placeholder': '你的看法...'}).removeAttr('data-id');
+					replyBtnJq.removeClass('reply-btn-shine');
 				}
 			})
 		});
@@ -174,7 +177,7 @@
 		});
 		
 		//点击“回复”按钮
-		$('.comments').on('tap', '.comments__reply', function() {
+		$('.comments').on('tap', '.comments__item', function() {
 			var _this = this;
 			if (!logStatus) {
 				location.href = '/login';
@@ -192,9 +195,20 @@
 
 		//评论框失去焦点(为了防止点击发送之前，发生blur事件，所以延迟执行)
 		commentInputJq.blur( function() {	
-				if (!$(this).val()) {					
-						commentInputJq.attr({'placeholder': '你的看法...'}).removeAttr('data-id');						
-				};
-			});
+			if (!$(this).val()) {					
+					commentInputJq.attr({'placeholder': '你的看法...'}).removeAttr('data-id');						
+			};
+		});
+
+		//评论框更改时，检查是否存在内容，是，发送按钮量，否，置灰
+		commentInputJq.on('input', function() {
+			if (commentInputJq.val().length > 2) {
+				if (!replyBtnJq.hasClass('reply-btn-shine')) {
+					replyBtnJq.addClass('reply-btn-shine');
+				}
+			} else {
+				replyBtnJq.removeClass('reply-btn-shine');
+			}
+		})
 	});
 

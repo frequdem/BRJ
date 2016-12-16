@@ -19,6 +19,10 @@ var userSchema = new mongoose.Schema({
 	collect: {
 		type: [String],
 		default: []
+	},
+	message: {
+		type: [String],
+		default: []
 	}
 
 });

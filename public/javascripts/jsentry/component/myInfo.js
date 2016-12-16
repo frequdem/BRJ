@@ -12,10 +12,25 @@ var initMyInfo = function(selector, bool) {
 						url: '/login/getCollectCnt',
 						type: 'get',
 						success: function(r) {
-							$($('.myinfo').contents()[0]).find('#mycollect-count').text('（' + r.count + '）');
+							$($('.myinfo').contents()[0]).find('#mycollect-count').text(r.count);
 						}
+					});
+					$.ajax({
+						url: '/login/getMessageCnt',
+						type: 'get',
+						success: function(r) {
+							var messageJq = $($('.myinfo').contents()[0]);
+							messageJq.find('#mymessage-count').text(r.count)
+							if (r.count > 0){
+								console.log(messageJq.find('.my-message'));
+								messageJq.find('.my-message').addClass('message-tip');
+							} else {
+								messageJq.find('.my-message').removeClass('message-tip');
+							}
+							
+						}
+					});
 
-					})
 					myinfoJq.animate({width: '80%'}, 200, 'ease-out');
 				} else {
 					maskJq.hide();

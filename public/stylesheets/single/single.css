@@ -216,6 +216,9 @@ color: #ccc;
 	border: none;
 	border-radius: 0.02rem;
 }
+.reply-btn-shine {
+	background: #76B3B4;
+}
 hr.reply__seperator {
 	margin-top: 0.2rem;
 }

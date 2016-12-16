@@ -32,15 +32,24 @@ router.get('/writeComment', function(req, res, next) {
 		if (req.query.toId) {
 			comment.to = req.query.toId;
 		}
-		comment.save(function(){
+		comment.save(function(err, data){
 	  		Comment.find({houseId:req.query.houseId}).populate('from','id nickname').populate('to', 'id nickname').sort({time: 1}).lean().exec(function(err, data) {
 				data.forEach(function(ele, index) {
 					if (ele.from._id.toString() == req.session.userId) {
 						data[index].fromMe = true;
 					}
-				});
+				});				
 			  	res.json(data);
-			})
+			});
+			//存一个给收信人
+			if (req.query.toId) {
+				User.findOneAndUpdate({_id: req.query.toId}, {$addToSet: {message: data._id}}, function(err, data) {
+					if (err) {
+						console.log(err);
+					}
+				})
+			}
+			
 		});
 	}	
 })
