@@ -105,23 +105,32 @@
 			}
 		});
 
-		//发表评论
-		$('.reply-btn').tap(function() {
+		//点击“发送”评论
+		$('.reply-btn').tap(function() {			
 			if (!logStatus) {
 				location.href = '/login';
 			}
 			var commentContent = $('#comment-input');
+			var commentInputJq = $('#comment-input');
 			if (commentContent.val().length < 3) {
 				alert('起码要说三个字吧？');
 				return;
 			}
+			var toId = commentInputJq.data('id') || '';
+			var content = commentContent.val();
+
+			var data = {
+				content: content,
+				houseId: houseId
+			};
+
+			if (toId) {
+				data.toId = toId;
+			}
 			$.ajax({
 				url : '/comment/writeComment',
 				type: 'GET',
-				data: {
-					content: commentContent.val(),
-					houseId: houseId
-				},
+				data: data,
 				success: function(datas) {
 					freshComments(datas);
 					commentContent.val('');
@@ -148,27 +157,39 @@
 		}
 
 		//删除评论
-		$('.comments__delete').tap(function() {
-			if (!logStatus) {
-				location.href = '/login';
-			}
-			alert(1);
+		$('.comments').on('tap', '.comments__delete', function() {
 			$.ajax({
 				url: '/comment/delComment',
 				type: 'GET',
 				data: {
-					id: $(this).data('id')
+					id: $(this).data('id'),
+					houseId: houseId 
 				},
 				success: function(datas) {
 					freshComments(datas);
 				}
 			})
 		});
-		//回复评论
-		$('.comments__replay').tap(function() {
-			alert(1);
+		
+		//点击“回复”评论
+		$('.comments').on('tap', '.comments__reply', function() {
 			if (!logStatus) {
 				location.href = '/login';
 			}
+			$('#comment-input').trigger('focus').attr({'placeholder': '回复'+ $(this).data('from') + ':', "data-id": $(this).data('id')});	
+			//滚动到评论框
+			$('html,body').scrollTo({
+					toT: $('#comments').offset().top,
+					durTime: 50
+				});					
 		});
-	})
+
+		//评论框失去焦点(为了防止点击发送之前，发生blur事件，所以延迟执行)
+		$('#comment-input').blur( function() {
+			setTimeout(function() {
+				$('#comment-input').attr({'placeholder': '你的看法...'}).removeAttr('data-id');				
+			}, 100);
+		});
+
+});
+

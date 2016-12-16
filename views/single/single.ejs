@@ -121,20 +121,22 @@
         <script type="text/template" id="commentsTemplate"> 
             {{ _.each(datas, function (item) { }}
               <li class="comments__item">
-                  <p class="comments__info"><span class="comments__username">{{=item.from.nickname}}</span>
-                  {{ if (item.to && item.to._id) { }}
-                  <span class="reply__word">>></span>
-                  <span class="comments__username">{{=item.to.nickname}}</span></p>
-                  {{ } }}
+                  <p class="comments__info">
+                    <span class="comments__username">{{=item.from.nickname}}</span>
+                    {{ if (item.to && item.to._id) { }}
+                      <span class="reply__word">>></span>
+                      <span class="comments__username">{{=item.to.nickname}}</span>
+                    {{ } }}
+                  </p>                  
                   <p class="comments__content">{{=item.content}}</p>
                   <p>
                     <span class="comments__time">{{=item.time}}</span>
                     {{ if (item.fromMe) { }}
-                    <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
+                      <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
                     {{ }else { }}
-                    <a href="javascript:void(0);" class="comments__replay" data-id={{=item._id}}>回复</a>
+                      <a href="javascript:void(0);" class="comments__reply" data-id={{=item.from._id}} data-from={{=item.from.nickname}}>回复</a>
                     {{ } }}
-                  </p>
+                  </p> 
                   <hr class="seperator comments__seperator">
               </li>
             {{ }); }}

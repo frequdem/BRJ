@@ -28,6 +28,10 @@ router.get('/writeComment', function(req, res, next) {
 			content: req.query.content,
 			time: new Date()
 		});
+
+		if (req.query.toId) {
+			comment.to = req.query.toId;
+		}
 		comment.save(function(){
 	  		Comment.find({houseId:req.query.houseId}).populate('from','id nickname').populate('to', 'id nickname').sort({time: 1}).lean().exec(function(err, data) {
 				data.forEach(function(ele, index) {
@@ -35,7 +39,6 @@ router.get('/writeComment', function(req, res, next) {
 						data[index].fromMe = true;
 					}
 				});
-
 			  	res.json(data);
 			})
 		});

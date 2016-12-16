@@ -243,7 +243,7 @@ hr.comments__seperator {
 	font-size: 0.12rem;
 	color: #ccc;
 }
-.comments__replay, .comments__delete {
+.comments__reply, .comments__delete {
 	float: right;
 	color: #aaa;
 	font-size: 0.14rem;
