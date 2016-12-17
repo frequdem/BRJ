@@ -26,6 +26,7 @@ router.get('/logout', function(req, res, next) {
 
 //我的收藏
 router.get('/myCollect', function(req, res, next) {
+
 	var data;
 	User.findOne({_id: req.session.userId}, function(err, data) {
 				if (err) {
@@ -45,26 +46,27 @@ router.get('/myCollect', function(req, res, next) {
 //我的消息
 router.get('/myMessage', function(req, res, next) {
 	var data;
+	//小于10的前面加0			
+	function checkTime(i) {
+			if (i<10) {
+				i="0" + i
+			}
+		    return i;
+		}
 	User.findOne({_id: req.session.userId}, function(err, data) {
 				if (err) {
 					console.log(err);
 				} else {
 					var messageIdList = data.message;
-					Comment.find({_id: {$in: messageIdList}}).lean().exec(function(err, data) {
+					Comment.find({_id: {$in: messageIdList}}).populate('from','id nickname').populate('to', 'id nickname').populate('houseId', 'id title').sort({time: 1}).lean().exec(function(err, data) {
 						if (err) {
 							console.log(err);
 						} else {
-							var delCnt = messageIdList.length;
-							messageIdList.forEach(function(ele, index) {
-								data.forEach(function(ele1, index1) {
-									if (ele1._id.toString() == ele) {
-										delCnt -= 1;
-										return;
-									}
-								})
+							data.forEach(function(ele, index) {
+								var time = ele.time;
+								data[index].time = time.getFullYear() + '-' + checkTime(time.getMonth()+1) + '-' + checkTime(time.getDate()) + ' ' + checkTime(time.getHours()) + ':' + checkTime(time.getMinutes());
 							});
-							console.log(delCnt,data);
-							res.render('login/myMessage', {list: data, delCnt: delCnt});
+							res.render('login/myMessage', {list: data});
 						}		
 				 	})
 				}	

@@ -43,12 +43,10 @@ router.get('/list', function(req, res, next) {
 				data.foreach(function(value, index, arr) {
 					if (item === value.id) {						
 						data[index].like = true;
-						console.log(data[index])
 					}					
 				})
 			})
 		}
-		console.log( data );
 		res.render('list/list', {list: data, logStatus: lgSt});
 	}).catch(function(err) {
 		console.log(err);

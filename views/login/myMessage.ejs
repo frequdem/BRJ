@@ -1,25 +1,34 @@
 <% include ../head.ejs %>
       <title>未读消息</title>
-      <link rel='stylesheet' href='/stylesheets/login/myCollect.css' />
-      <script type="text/javascript" src="/javascripts/js/login/myCollect.js"></script>
+      <link rel='stylesheet' href='/stylesheets/login/myMessage.css' />
+      <script type="text/javascript" src="/javascripts/js/login/myMessage.js"></script>
     </head>
     <body>  
 
         <div class="header">
-        	<a href="/list" style="text-decoration: none;">
+        	<a href="javascript:history.back(-1);" style="text-decoration: none;">
         		<i class="iconfont goBack">&#xe61d;</i>
         	</a><span class="my-text">未读</span><span class="collect-text">消息</span>        	
         </div> 
 		<div class="content">
-				<p><%=delCnt%></p>
 		        <% if(list) { %>
 		        <ul>
 		            <% list.forEach(function(item) { %>
-		                <li><%=item.content%></li>
+		                <li class="comments__item" data-id=<%=item._id%> data-houseid=<%=item.houseId._id%>>
+                      <div class="comments__item-nohr clearfix">
+                        <p class="comments__info">
+                          <span class="comments__username"><%=item.from.nickname%></span><span class="house-title">在&nbsp;<<<%=item.houseId.title%>>></span><span class="comments__time"><%=item.time%></span>
+                        </p>                  
+                        <p class="comments__content">
+                            <span class="reply-you">回复你：</span><span><%=item.content%></span>
+                        </p>
+                        <p><span class="check-msg">查看详情</span></p>
+                      </div>                      
+                      <hr class="seperator comments__seperator">
+                  </li>
 		            <% }) %>
 		        </ul>
 		        <% } %>
-		      </div>
-        
+      </div>
     </body>
 </html>

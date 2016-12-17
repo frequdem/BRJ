@@ -135,10 +135,16 @@
 				type: 'GET',
 				data: data,
 				success: function(datas) {
-					freshComments(datas);
+					freshComments(datas.data);
 					//评论框清空，发送按钮置灰
 					commentInputJq.val('').attr({'placeholder': '你的看法...'}).removeAttr('data-id');
 					replyBtnJq.removeClass('reply-btn-shine');
+					var lastMsgItem = $('#' + datas.lastMsgId);
+					$(window).scrollTo({
+						toT: lastMsgItem.offset().top,
+						durTime: 300
+					});	
+					lastMsgItem.css({'background': '#c2e1e1'}).animate({'background': '#ffffff'}, 1400, 'ease-out');
 				}
 			})
 		});
@@ -170,7 +176,8 @@
 				type: 'GET',
 				data: {
 					id: $(this).data('id'),
-					houseId: houseId 
+					houseId: houseId,
+					toId: $(this).data('toId')
 				},
 				success: function(datas) {
 					freshComments(datas);
@@ -183,6 +190,9 @@
 			var _this = this;
 
 			if ($(_this).find('.comments__delete').length) {
+				if (!commentInputJq.val()) {					
+					commentInputJq.attr({'placeholder': '你的看法...'}).removeAttr('data-id');						
+				};
 				return;
 			}
 			setTimeout(function() {
@@ -199,7 +209,7 @@
 						durTime: 120
 				});	
 				setTimeout(function() {
-						commentInputJq.trigger('focus').attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
+						commentInputJq.trigger('select').attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
 				}, 100);
 			}, 0);
 

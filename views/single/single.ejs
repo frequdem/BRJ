@@ -121,9 +121,9 @@
         <script type="text/template" id="commentsTemplate"> 
             {{ _.each(datas, function (item) { }}
               {{ if (item.fromMe) { }}
-                <li class="comments__item my__reply"  data-id={{=item.from._id}} data-from={{=item.from.nickname}}>
+                <li class="comments__item my__reply"  data-id={{=item.from._id}} data-from={{=item.from.nickname}} id={{=item._id}}>
               {{ } else { }}
-                <li class="comments__item"  data-id={{=item.from._id}} data-from={{=item.from.nickname}}>
+                <li class="comments__item"  data-id={{=item.from._id}} data-from={{=item.from.nickname}} id={{=item._id}}>
               {{ } }}
                   <p class="comments__info">
                     <span class="comments__username">{{=item.from.nickname}}</span>
@@ -136,7 +136,11 @@
                   <p>
                     <span class="comments__time">{{=item.time}}</span>
                     {{ if (item.fromMe) { }}
-                      <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
+                        {{ if (item.to && item.to._id) { }}
+                            <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}} data-toId={{=item.to._id}}>删除</a>
+                          {{ } else { }}
+                            <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
+                          {{ } }}
                     {{ }else { }}
                       <a href="javascript:void(0);" class="comments__reply">回复</a>
                     {{ } }}
