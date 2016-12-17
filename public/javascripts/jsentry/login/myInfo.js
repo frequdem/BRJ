@@ -15,6 +15,9 @@ $(document).ready(function() {
 	$('.my-collect').tap(function() {
 		window.parent.location.href = '/login/myCollect';
 	});
+	$('.my-message').tap(function() {
+		window.parent.location.href = '/login/myMessage';
+	});
 
 	$('body').on('touchmove', function(e) {
 			e.preventDefault();

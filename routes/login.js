@@ -4,6 +4,7 @@ var checkSession = require('../assist/checkSession');
 var mongoose = require('mongoose');
 var User = require('../models/user');
 var House = require('../models/house');
+var Comment = require('../models/comment');
 router.get('/', function(req, res, next) {
   	res.render('login/login',{referer: req.headers.referer});
 });
@@ -35,6 +36,35 @@ router.get('/myCollect', function(req, res, next) {
 							console.log(err);
 						} else {
 							res.render('login/myCollect', {list: data});
+						}		
+				 	})
+				}	
+			})
+})
+
+//我的消息
+router.get('/myMessage', function(req, res, next) {
+	var data;
+	User.findOne({_id: req.session.userId}, function(err, data) {
+				if (err) {
+					console.log(err);
+				} else {
+					var messageIdList = data.message;
+					Comment.find({_id: {$in: messageIdList}}).lean().exec(function(err, data) {
+						if (err) {
+							console.log(err);
+						} else {
+							var delCnt = messageIdList.length;
+							messageIdList.forEach(function(ele, index) {
+								data.forEach(function(ele1, index1) {
+									if (ele1._id.toString() == ele) {
+										delCnt -= 1;
+										return;
+									}
+								})
+							});
+							console.log(delCnt,data);
+							res.render('login/myMessage', {list: data, delCnt: delCnt});
 						}		
 				 	})
 				}	
