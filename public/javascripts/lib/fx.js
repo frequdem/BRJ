@@ -123,7 +123,7 @@
         var defaults = {
             toT : 0,    //滚动目标位置
             durTime : 500,  //过渡动画时间
-            delay : 10,     //多少毫秒刷新一次
+            delay : 30,     //多少毫秒刷新一次
             callback:null   //回调函数
         };
         var opts = $.extend(defaults,options),

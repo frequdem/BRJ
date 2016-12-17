@@ -10,9 +10,9 @@
 		});
 
 		$('.info-tabs__tab').click(function() {
-				$('html,body').scrollTo({
+				$(window).scrollTo({
 					toT: $($(this).find('a').data('href')).offset().top,
-					durTime: 200,
+					durTime: 120,
 				});	
 				// $('html, body').scrollTop($($(this).find('a').data('href')).offset().top);
 			});
@@ -162,7 +162,9 @@
 		}
 
 		//删除评论
-		$('.comments').on('tap', '.comments__delete', function() {
+		$('.comments').on('tap', '.comments__delete', function(e) {
+			$(this).parents('.comments__item').addClass('tap-from-delete');
+			
 			$.ajax({
 				url: '/comment/delComment',
 				type: 'GET',
@@ -176,21 +178,31 @@
 			})
 		});
 		
-		//点击“回复”按钮
+		//点击评论区的某栏
 		$('.comments').on('tap', '.comments__item', function() {
 			var _this = this;
-			if (!logStatus) {
-				location.href = '/login';
+
+			if ($(_this).find('.comments__delete').length) {
 				return;
 			}
-			//滚动到评论框
-			$('html,body').scrollTo({
-					toT: $('#comments').offset().top,
-					durTime: 50
+			setTimeout(function() {
+				if ($(_this).hasClass('tap-from-delete')) {
+					return;
+				}				
+				if (!logStatus) {
+					location.href = '/login';
+					return;
+				}
+				//滚动到评论框
+				$(window).scrollTo({
+						toT: $('#comments').offset().top,
+						durTime: 120
 				});	
 				setTimeout(function() {
 						commentInputJq.trigger('focus').attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
-					}, 100);
+				}, 100);
+			}, 0);
+
 		});
 
 		//评论框失去焦点(为了防止点击发送之前，发生blur事件，所以延迟执行)

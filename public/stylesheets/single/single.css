@@ -252,3 +252,6 @@ hr.comments__seperator {
 	font-size: 0.14rem;
 	text-decoration: none;
 }
+.my__reply {
+	background: #fcfcfc;
+}

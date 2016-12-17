@@ -22,7 +22,6 @@ var initMyInfo = function(selector, bool) {
 							var messageJq = $($('.myinfo').contents()[0]);
 							messageJq.find('#mymessage-count').text(r.count)
 							if (r.count > 0){
-								console.log(messageJq.find('.my-message'));
 								messageJq.find('.my-message').addClass('message-tip');
 							} else {
 								messageJq.find('.my-message').removeClass('message-tip');

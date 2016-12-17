@@ -120,7 +120,11 @@
         <script type="text/javascript" src="/javascripts/js/single/single.js"></script>
         <script type="text/template" id="commentsTemplate"> 
             {{ _.each(datas, function (item) { }}
-              <li class="comments__item"  data-id={{=item.from._id}} data-from={{=item.from.nickname}}>
+              {{ if (item.fromMe) { }}
+                <li class="comments__item my__reply"  data-id={{=item.from._id}} data-from={{=item.from.nickname}}>
+              {{ } else { }}
+                <li class="comments__item"  data-id={{=item.from._id}} data-from={{=item.from.nickname}}>
+              {{ } }}
                   <p class="comments__info">
                     <span class="comments__username">{{=item.from.nickname}}</span>
                     {{ if (item.to && item.to._id) { }}
