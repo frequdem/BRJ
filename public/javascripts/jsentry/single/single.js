@@ -186,7 +186,7 @@
 		});
 		
 		//点击评论区的某栏
-		$('.comments').on('tap', '.comments__item', function() {
+		$('.comments').on('click', '.comments__item', function() {
 			var _this = this;
 
 			if ($(_this).find('.comments__delete').length) {
@@ -194,7 +194,8 @@
 					commentInputJq.attr({'placeholder': '你的看法...'}).removeAttr('data-id');						
 				};
 				return;
-			}
+			};
+			commentInputJq[0].focus();
 			setTimeout(function() {
 				if ($(_this).hasClass('tap-from-delete')) {
 					return;
@@ -208,8 +209,11 @@
 						toT: $('#comments').offset().top,
 						durTime: 120
 				});	
-				setTimeout(function() {
-						commentInputJq.trigger('select').attr({'placeholder': '回复'+ $(_this).data('from') + ':', "data-id": $(_this).data('id')});
+				setTimeout(function() {						
+						commentInputJq.attr({
+							'placeholder': '回复 | '+ $(_this).data('from') + '说 : ' + $(_this).find('.comments__content').text().substring(0,20) + '...',
+							 "data-id": $(_this).data('id')
+							});
 				}, 100);
 			}, 0);
 

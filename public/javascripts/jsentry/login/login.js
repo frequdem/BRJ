@@ -1,4 +1,13 @@
 $(document).ready(function() {
+	//检查cookie中是否有登录信息
+	if ($.fn.cookie('username')) {
+		$('#username1').val($.fn.cookie('username'));
+	};
+	if ($.fn.cookie('password')) {
+		$('#password1').val($.fn.cookie('password'));
+	};
+
+
 	var FORM_TYPE = 1;//1为登录，2为注册
 	var phoneTest = /^\d{11}$/;
 	var emailTest = /^.+@.+\.com$/;
@@ -18,6 +27,8 @@ $(document).ready(function() {
 					type: 'POST',
 					success: function(data) {
 						if(data.status === 200) {
+							$.fn.cookie('username', username1, {expires : 7});
+							$.fn.cookie('password', password1, {expires : 7});
 							location.replace($('.referer').val());		
 						} else {
 							alert("账号或密码错误");
