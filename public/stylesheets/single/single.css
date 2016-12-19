@@ -40,6 +40,7 @@ body {
 	background-size: contain;
 
 }
+
 .header .login-img {
 	display: inline-block;
 	float: right;
@@ -50,7 +51,21 @@ body {
 	background: #76B3B4;
 }
 .header .login-img.logged{
+	position: relative;
 	font-size: 0.24rem;
+}
+.unReadMsgCnt {
+	position: absolute;
+	display: inline-block;
+	width: 0.18rem;
+	height: 0.18rem;
+	border-radius: 0.09rem;
+	top: 0.02rem;
+	right: 0.02rem;
+	color: #fff;
+	background: #f00;
+	line-height: 0.18rem;
+	font-size: 0.14rem;
 }
 .goBack {
 	margin-left: 0.1rem;

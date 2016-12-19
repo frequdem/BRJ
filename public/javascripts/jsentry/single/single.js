@@ -9,7 +9,7 @@
 			location.href = '/list';
 		});
 
-		$('.info-tabs__tab').click(function() {
+		$('.info-tabs__tab').tap(function() {
 				$(window).scrollTo({
 					toT: $($(this).find('a').data('href')).offset().top,
 					durTime: 120,

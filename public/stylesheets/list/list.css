@@ -67,15 +67,15 @@ html {
 }
 .fy-item-portrait {
 	float: left;
-	margin-right: 0;
-	height: 0.42rem;
-	width: 0.42rem;
-	border-radius: 0.21rem;
+	margin-top: 0.05rem;
+	height: 0.36rem;
+	width: 0.36rem;
+	border-radius: 0.18rem;
 }
 .fy-item-textinfo {
 	float: left;
-	margin-left: 0.1rem;
-	margin-top: 0.0rem;
+	margin-left: 0.06rem;
+	margin-top: 0;
 }
 .fy-item-name {
 	line-height: 0.26rem;
