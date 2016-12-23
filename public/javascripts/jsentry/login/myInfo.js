@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	$('.logout').tap(function() {
 		$.ajax({
 			url: '/login/logout',

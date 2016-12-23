@@ -44,7 +44,6 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
 	$(function () {
 		var initMyInfo = __webpack_require__(1);
 		initMyInfo('.logged', logStatus);

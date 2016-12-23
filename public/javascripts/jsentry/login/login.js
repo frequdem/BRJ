@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	//检查cookie中是否有登录信息
 	if ($.fn.cookie('username')) {
 		$('#username1').val($.fn.cookie('username'));

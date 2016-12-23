@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	$('.comments__item').on('tap', function() {
 		$.ajax({
 			url: '/comment/readMsg',

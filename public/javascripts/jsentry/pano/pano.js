@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	$('body').on('touchstart', function(e) {
 		e.preventDefault();
 	});

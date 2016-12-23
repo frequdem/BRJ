@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	$(document).ready(function () {
+	$(function () {
 		$('body').on('touchstart', function (e) {
 			e.preventDefault();
 		});

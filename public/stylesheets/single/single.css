@@ -57,15 +57,15 @@ body {
 .unReadMsgCnt {
 	position: absolute;
 	display: inline-block;
-	width: 0.18rem;
-	height: 0.18rem;
-	border-radius: 0.09rem;
+	width: 0.16rem;
+	height: 0.16rem;
+	border-radius: 0.08rem;
 	top: 0.02rem;
 	right: 0.02rem;
-	color: #fff;
-	background: #f00;
-	line-height: 0.18rem;
-	font-size: 0.14rem;
+	color: #76B3B4;
+	background: #fff;
+	line-height: 0.16rem;
+	font-size: 0.12rem;
 }
 .goBack {
 	margin-left: 0.1rem;

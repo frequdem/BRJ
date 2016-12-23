@@ -1,4 +1,3 @@
-
 	$(function() {
 		var initMyInfo = require('../component/myInfo');
 		initMyInfo('.logged', logStatus);
