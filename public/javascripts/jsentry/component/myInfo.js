@@ -6,6 +6,9 @@ var initMyInfo = function(selector, bool) {
 			var myinfoJq = $('.myinfo');
 			
 			$(selector).tap(function() {
+				//隐藏按钮上的未读消息数字
+				$('.unReadMsgCnt').hide();
+				
 				if (maskJq.css('display') === 'none') {
 					maskJq.show();
 					$.ajax({

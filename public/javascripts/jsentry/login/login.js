@@ -7,7 +7,6 @@ $(function() {
 		$('#password1').val($.fn.cookie('password'));
 	};
 
-
 	var FORM_TYPE = 1;//1为登录，2为注册
 	var phoneTest = /^\d{11}$/;
 	var emailTest = /^.+@.+\.com$/;

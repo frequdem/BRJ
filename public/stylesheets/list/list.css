@@ -117,5 +117,17 @@ html {
 	line-height: 0.2rem;
 	font-size: 0.17rem;
 	text-shadow: 0;
-
+}
+.unReadMsgCnt {
+	position: absolute;
+	display: inline-block;
+	width: 0.16rem;
+	height: 0.16rem;
+	border-radius: 0.08rem;
+	top: 0.02rem;
+	right: 0.02rem;
+	color: #76B3B4;
+	background: #fff;
+	line-height: 0.16rem;
+	font-size: 0.12rem;
 }
