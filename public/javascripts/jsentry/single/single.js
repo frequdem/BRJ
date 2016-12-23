@@ -1,6 +1,7 @@
-	var initMyInfo = require('../component/myInfo');
-	initMyInfo('.logged', logStatus);
-	$(document).ready(function() {
+
+	$(function() {
+		var initMyInfo = require('../component/myInfo');
+		initMyInfo('.logged', logStatus);
 		var houseId = $('#houseId').val();
 		$('i.unlogged').on('tap',function() {
 			location.href = '/login';

@@ -1,6 +1,6 @@
-var initMyInfo = require('../component/myInfo');
-initMyInfo('.logged', logStatus);
 $(function() {
+	var initMyInfo = require('../component/myInfo');
+	initMyInfo('.logged', logStatus);
 	$('i.unlogged').on('tap',function() {
 		location.href = '/login';
 	});

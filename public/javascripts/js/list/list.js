@@ -44,9 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var initMyInfo = __webpack_require__(1);
-	initMyInfo('.logged', logStatus);
 	$(function () {
+		var initMyInfo = __webpack_require__(1);
+		initMyInfo('.logged', logStatus);
 		$('i.unlogged').on('tap', function () {
 			location.href = '/login';
 		});

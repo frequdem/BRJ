@@ -44,9 +44,10 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var initMyInfo = __webpack_require__(1);
-	initMyInfo('.logged', logStatus);
-	$(document).ready(function () {
+	
+	$(function () {
+		var initMyInfo = __webpack_require__(1);
+		initMyInfo('.logged', logStatus);
 		var houseId = $('#houseId').val();
 		$('i.unlogged').on('tap', function () {
 			location.href = '/login';
