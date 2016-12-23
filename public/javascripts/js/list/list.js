@@ -46,7 +46,7 @@
 
 	var initMyInfo = __webpack_require__(1);
 	initMyInfo('.logged', logStatus);
-	$(document).ready(function () {
+	$(function () {
 		$('i.unlogged').on('tap', function () {
 			location.href = '/login';
 		});
