@@ -108,7 +108,7 @@
                 <!-- <input type="text" name="comment-input" id="comment-input" placeholder="你的看法..."> -->
               </div>
               <div class="clearfix">
-                <button type="button" class="reply-btn">发送</button>
+                <button type="button" class="send-btn">发送</button>
               </div>
               
               <hr class="seperator reply__seperator" style="margin-right: 0">
@@ -141,7 +141,7 @@
                     <span class="comments__time">{{=item.time}}</span>
                     {{ if (item.fromMe) { }}
                         {{ if (item.to && item.to._id) { }}
-                            <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}} data-toId={{=item.to._id}}>删除</a>
+                            <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}} data-toid={{=item.to._id}}>删除</a>
                           {{ } else { }}
                             <a href="javascript:void(0);" class="comments__delete" data-id={{=item._id}}>删除</a>
                           {{ } }}
@@ -152,6 +152,16 @@
                   <hr class="seperator comments__seperator">
               </li>
             {{ }); }}
+        </script>
+         <script type="text/template" id="replyTemplate">
+            <div id="reply-area">
+              <div class="reply-input-area">
+                <textarea placeholder="你的看法..." class="reply-input"></textarea>
+              </div>
+              <div class="clearfix reply-btn-div">
+                <button type="button" class="reply-btn">发送</button>
+              </div>
+            </div>              
         </script>
     </body>
 </html>

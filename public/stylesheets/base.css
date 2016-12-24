@@ -24,6 +24,7 @@ body {
 	width: 100%;
 	line-height: 0.14rem;
 	font-size: 0.14rem;
+  -webkit-overflow-scrolling: touch;
 }
 input[type='text'], input[type='password']{
 	padding: 0;

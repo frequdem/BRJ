@@ -70,7 +70,6 @@ router.get('/delComment', function(req, res, next) {
 							data[index].fromMe = true;
 						}
 					});
-
 				  	res.json(data);
 				})
 			})
