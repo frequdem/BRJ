@@ -212,7 +212,6 @@
 			var replyBtnJq = $('#reply-area .reply-btn');
 			$('.content').scrollTop(_this.offsetTop);
 			replyInputJq[0].focus();
-
 			//回复框框失去焦点
 			replyInputJq.blur( function() {	
 				setTimeout(function() {
@@ -242,8 +241,6 @@
 			}, 10);
 		});
 
-		
-
 		//评论框更改时，检查是否存在内容，是，发送按钮量，否，置灰
 		commentInputJq.on('input', function() {
 			if (commentInputJq.val().length > 2) {
@@ -253,7 +250,7 @@
 			} else {
 				sendBtnJq.removeClass('reply-btn-shine');
 			}
-		})
+		});
 
 		//获取未读消息的数量（右上角）
 		if (logStatus) {
