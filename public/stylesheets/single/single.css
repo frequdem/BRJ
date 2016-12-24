@@ -72,9 +72,14 @@ body {
 	font-size: 0.26rem;
 	color: #fff;
 }
+.content {
+	position: fixed;
+	top: 0.5rem;
+	bottom: 0;
+	overflow: scroll;
+}
 .cover-part {
 	width: 100%;
-	padding-top: 0.5rem;
 }
 .cover-part img {
 	width: 100%;
