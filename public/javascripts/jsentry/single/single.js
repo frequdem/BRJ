@@ -255,11 +255,9 @@
 				url: '/login/getMessageCnt',
 				type: 'get',
 				success: function(r) {				
-					var myMsgCnt = $('.unReadMsgCnt');
+					var myMsgCnt = $('.login-img.logged');
 					if (r.count > 0){
-						myMsgCnt.text(r.count).show();
-					} else {
-						myMsgCnt.hide();
+						myMsgCnt.append('<span class="unReadMsgCnt">' + r.count + '</span>');
 					}				
 				}
 			});
