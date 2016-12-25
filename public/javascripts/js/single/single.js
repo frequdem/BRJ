@@ -246,22 +246,22 @@
 				};
 				return;
 			};
-			if ($(this).find('#reply-area').length) {
+			if ($(this).find('.reply-area').length) {
+				$('.reply-area').remove();
 				return;
 			}
+			if ($('.reply-area').length) {
+				$('.reply-area').remove();
+			};
 
 			//添加回复框
 			$(this).append(replyTemplate());
-			var replyInputJq = $('#reply-area textarea');
-			var replyBtnJq = $('#reply-area .reply-btn');
+			var replyInputJq = $('.reply-area textarea');
+			var replyBtnJq = $('.reply-area .reply-btn');
 			$('.content').scrollTop(_this.offsetTop);
 			replyInputJq[0].focus();
 			//回复框框失去焦点
-			replyInputJq.blur(function () {
-				setTimeout(function () {
-					$('#reply-area').remove();
-				}, 0);
-			});
+
 			//检查回复框的字数
 			replyInputJq.on('input', function () {
 				if (replyInputJq.val().length > 2) {
