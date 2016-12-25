@@ -25,6 +25,9 @@
                 <li  class="fy-item" data-id=<%=item._id.toString()%>>
                     <div class="fy-item-cover">
                         <img src="/resource/<%=item._id.toString()%>/cover.jpg" class="fy-item-img">
+                            <div class="watch-area">
+                                <i class="iconfont watch-icon">&#xe7f7;</i><span class="icon-count"><%= item.watchs %></span>
+                            </div>
                     </div>                
                     <div class="fy-item-info clearfix">
                         <img class="fy-item-portrait" src="/resource/<%=item._id.toString()%>/portrait.jpg">                                       
@@ -32,9 +35,7 @@
                             <p class="fy-item-name"><%=item.title%></p>
                             <p class="fy-item-detail"><i class="iconfont info-icon">&#xe602;</i><span><%=item.type%></span><i class="iconfont info-icon">&#xe682;</i><span>装修<%=item.dec_cost%>万</span><i class="iconfont info-icon">&#xe635;</i><span><%=item.province%> <%=item.county%></span></p>                           
                         </div>
-                        <div class="watch-area">
-                            <i class="iconfont watch-icon">&#xe7f7;</i><span class="icon-count"><%= item.watchs %></span>
-                        </div>
+
                     </div>  
                 </li>
             <% }) %>

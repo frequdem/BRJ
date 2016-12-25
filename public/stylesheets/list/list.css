@@ -67,14 +67,14 @@ html {
 }
 .fy-item-portrait {
 	float: left;
-	margin-top: 0.05rem;
-	height: 0.36rem;
-	width: 0.36rem;
-	border-radius: 0.18rem;
+	margin-top: 0.03rem;
+	height: 0.4rem;
+	width: 0.4rem;
+	border-radius: 0.2rem;
 }
 .fy-item-textinfo {
 	float: left;
-	margin-left: 0.06rem;
+	margin-left: 0.08rem;
 	margin-top: 0;
 }
 .fy-item-name {
@@ -98,7 +98,9 @@ html {
 	margin-left: 0.06rem;
 }
 .watch-area {
-	float: right;
+	position: absolute;
+	bottom: -0.33rem;
+	right: 0.06rem;
 	margin-top: 0.26rem;
 	margin-right: 0.01rem;
 	display: inline-block;	

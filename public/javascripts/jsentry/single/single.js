@@ -197,13 +197,10 @@
 				return;
 			}
 			if ($(_this).find('.comments__delete').length) {
-				if (!commentInputJq.val()) {					
-					commentInputJq.attr({'placeholder': '你的看法...'}).removeAttr('data-id');						
-				};
 				return;
 			};
 			if ($(this).find('.reply-area').length) {
-				$('.reply-area').remove();
+				$('.reply-area textarea').focus();
 				return;
 			}
 			if ($('.reply-area').length) {

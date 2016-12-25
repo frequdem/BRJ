@@ -52,7 +52,9 @@ require('../WebGL/math.js');
         _this.idsBuffer = gl.createBuffer();
         _this.indexBuffer = gl.createBuffer();
         gl.uniformMatrix4fv(uNeighProjectionLoc, false, GI.sys.projection.elements);
-        _this.alpha = 0.1;
+        _this.alpha = 0.06;
+        _this.multiple = 1.06;
+        _this.brighteningBool = true;
         _this.updateDate();
     };
 
@@ -112,10 +114,22 @@ require('../WebGL/math.js');
             gl.vertexAttribPointer(aIdCurLoc, 1, gl.FLOAT, false, 0, 0);
             gl.enableVertexAttribArray(aIdCurLoc);
 
-            if(GI.selId != -1){
-                _this.brighten();
-            }else if(GI.selId == -1){
-                _this.darken();
+            // if(GI.selId != -1){
+            //     _this.brighten();
+            // }else if(GI.selId == -1){
+            //     _this.darken();
+            // }
+
+            if (_this.alpha > 0.72) {
+                _this.brighteningBool = false;
+            } else if (_this.alpha < 0.04) {
+                _this.brighteningBool = true;
+            }
+
+            if (_this.brighteningBool) {
+                _this.alpha *= _this.multiple;
+            } else {
+                _this.alpha /= _this.multiple;
             }
             gl.uniform1f(uNeighAlphaLoc,_this.alpha);
 
