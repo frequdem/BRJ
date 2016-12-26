@@ -57,6 +57,7 @@ require('../WebGL/math.js');
             _this.sys.gl = gl;
             _this.sys.projection = new PanoAJK.Math.Matrix4().setPerspective(_this.sys.projectionAngle,_this.sys.canvas.width/_this.sys.canvas.height,10,3000);//投影矩阵导入webgl系统
             gl.enable(gl.BLEND);
+
             gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
             gl.clearColor(0, 0, 0, 1);
             //_this.sys.gl = WebGLDebugUtils.makeDebugContext(gl, throwOnGLError, logAndValidate);
