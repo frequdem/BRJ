@@ -44,11 +44,7 @@
          uniform float uAlpha;
          varying float vAlpha;
          void main() {
-            if(int(aIdCur) == uIdSel){
-                vAlpha = uAlpha;
-            }else{
-                vAlpha = 0.1;
-            }
+            vAlpha = uAlpha;
             gl_Position = uProjection * uViewMat* aCoords;
             //gl_PointSize = 20.0;
          }
