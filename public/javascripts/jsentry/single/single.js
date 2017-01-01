@@ -199,6 +199,9 @@
 			if ($(_this).find('.comments__delete').length) {
 				return;
 			};
+			if ($(_this).find('.reply-btn').length) {
+				return;
+			};
 			if ($(this).find('.reply-area').length) {
 				$('.reply-area textarea').focus();
 				return;

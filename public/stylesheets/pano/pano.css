@@ -28,3 +28,35 @@ body {
 	height: 100px;
 	display: inline-block;
 }
+.good-point {
+	display: inline-block;
+	width: 0.26rem;
+	height: 0.26rem;
+	position: absolute;
+	left: -0.13rem;
+	top: -0.13rem;
+	transform: translate(0.3rem, 1rem);
+}
+.good-point-out {
+	display: inline-block; 
+	width: 0.1rem; 
+	height: 0.1rem; 
+	background: #222; 
+	border-radius: 0.05rem;
+	position: absolute;
+	left: 50%; 
+	top: 50%; 
+	transform: translate(-50%,-50%);
+}
+.good-point-in {
+	display: inline-block; 
+	width: 0.08rem; 
+	height: 0.08rem; 
+	background: #76B3B4; 
+	border-radius: 0.05rem;
+	position: absolute;
+	left: 50%; 
+	top: 50%; 
+	transform: translate(-50%,-50%); 
+	border: 0.01rem solid #fff;
+}
