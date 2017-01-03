@@ -210,7 +210,9 @@
 	            firstPath: args.firstPath,
 	            currentPath: args.firstPath,
 	            wanderBool: args.smoothSwitch || false,
-	            projectionAngle: args.projection || 60
+	            projectionAngle: args.projection || 60,
+	            showGoods: true,
+	            hasGoods: false
 	        };
 	        _this.sys.canvasObject = new PanoAJK.Main.Canvas(args.canvas);
 	        _this.sys.canvas = _this.sys.canvasObject.core;
@@ -255,13 +257,71 @@
 	            _this.objsToDraw.skybox = new PanoAJK.Main.Skybox(skyboxArgs);
 	            if (_this.sys.wanderBool) {
 	                _this.objsToDraw.neighPts = new PanoAJK.Main.NeighPts(_this);
+	            };
+
+	            if (_this.sys.showGoods) {
+	                _this.updateGoodsPos();
+	                _this.updateGoodsDom();
 	            }
 	        },
-
+	        //更新物品
+	        updateGoodsPos: function () {
+	            _this.sys.goodsPos = [];
+	            _this.sys.goodsInfo = [];
+	            _this.sys.ptName = _this.sys.currentPath.match(/\/[a-z]{1}\//)[0].split('/')[1]; //类似'a','b'
+	            _this.sys.currGoodsInfo = _this.sys.pts[_this.sys.ptName].goods;
+	            if (_this.sys.currGoodsInfo && _this.sys.currGoodsInfo.length) {
+	                _this.sys.hasGoods = true;
+	                for (var i = 0; i < _this.sys.currGoodsInfo.length; i++) {
+	                    _this.sys.goodsPos.push(_this.sys.currGoodsInfo[i].pos);
+	                    _this.sys.goodsInfo.push(_this.sys.currGoodsInfo[i].info);
+	                }
+	            } else {
+	                _this.sys.hasGoods = false;
+	            }
+	        },
+	        updateGoodsDom: function () {
+	            var goodsJq = $('#all-goods-base');
+	            if (!_this.sys.hasGoods) {
+	                goodsJq.html('');
+	                return;
+	            }
+	            var finalHtml = '';
+	            var htmlSeg1 = '<span class="good-point" id="';
+	            var htmlSeg2 = '"><span class="good-info-text" style="width: ';
+	            var htmlSeg3 = '</span><span class="good-point-out"></span><span class="good-point-in"></span></span>';
+	            for (var i = 0; i < _this.sys.goodsPos.length; i++) {
+	                var text = _this.sys.goodsInfo[i].name + ' / ' + _this.sys.goodsInfo[i].brand;
+	                finalHtml += htmlSeg1 + i + htmlSeg2 + text.length * 0.13 + 'rem;">' + text + htmlSeg3;
+	            }
+	            goodsJq.html(finalHtml);
+	        },
+	        cutOffGoods: function () {
+	            var goodsJq = $('#all-goods-base');
+	            goodsJq.find('.good-info-text').text('').animate({ "width": "0rem" }, 600, function () {
+	                goodsJq.hide();
+	            });
+	        },
+	        cutOnGoods: function () {
+	            $('#all-goods-base').show();
+	        },
+	        refreshGoodsPos: function (controller) {
+	            var dirs, dirPt, t, width, height;
+	            $.each(_this.sys.goodsPos, function (index, item) {
+	                dirs = item;
+	                dirPt = new PanoAJK.Math.Matrix4().set(_this.sys.projection).multiply(controller.vmMat4).multiplyVector4(new PanoAJK.Math.Vector4([dirs[0], dirs[1], dirs[2], 1]));
+	                if (dirPt.elements[3] < 0) {
+	                    return;
+	                }
+	                t = [dirPt.elements[0] / dirPt.elements[3], dirPt.elements[1] / dirPt.elements[3]];
+	                width = _this.sys.canvasObject.width() * (t[0] + 1) / 200;
+	                height = _this.sys.canvasObject.height() * (1 - t[1]) / 200;
+	                $('#' + index).css({ 'transform': 'translate(' + width + 'rem,' + height + 'rem)' });
+	            });
+	        },
 	        //刷新
 	        refresh: function (controller) {
 	            controller.update();
-
 	            //平滑漫游流程控制
 	            if (_this.sys.wanderBool) {
 	                _this.checkMouseOverNeighpt(controller);
@@ -273,6 +333,9 @@
 	            _this.objsToDraw.skybox.render(controller);
 	            if (_this.objsToDraw.neighPts) {
 	                _this.objsToDraw.neighPts.render(controller);
+	            }
+	            if (controller.isRotateScene && _this.sys.showGoods && _this.sys.hasGoods) {
+	                _this.refreshGoodsPos(controller);
 	            }
 	        },
 
@@ -520,7 +583,6 @@
 
 	        //全景图预加载
 	        preloadTexture: function (url) {
-
 	            if ($.inArray(url, GI.sys.imageLoadedList) == -1) {
 	                var urls = [//全景图链接(顺序必须一致)
 	                url + "_right.jpg", url + "_left.jpg", url + "_top.jpg", url + "_bottom.jpg", url + "_front.jpg", url + "_back.jpg"];
@@ -564,9 +626,11 @@
 	            //进行预加载
 	            var urlId = url.split('/')[2];
 	            var pts = GI.sys.pts;
-	            for (var item in pts[urlId]) {
-	                if ($.inArray(pts[urlId][item]['path'], GI.sys.imageLoadedList) == -1) {
-	                    _this.preloadTexture(pts[urlId][item]['path']);
+	            var preloadUrl;
+	            for (var item in pts[urlId].neighs) {
+	                var preloadUrl = url.replace(/\/[A-Za-z]\//, '/' + item + '/');
+	                if ($.inArray(preloadUrl, GI.sys.imageLoadedList) == -1) {
+	                    _this.preloadTexture(preloadUrl);
 	                }
 	            }
 	        }
@@ -1307,6 +1371,7 @@
 	        _this.alpha = 0.06;
 	        _this.multiple = 1.05;
 	        _this.brighteningBool = true;
+	        _this.isDrawNeighs = true;
 	        _this.updateDate();
 	    };
 
@@ -1315,18 +1380,18 @@
 
 	        //更新定位点
 	        updateDate: function () {
-	            var neighPtPath = GI.sys.currentPath.split('/')[2];
+	            var neighPtPath = GI.sys.currentPath.match(/\/[a-z]{1}\//)[0].split('/')[1];
 	            _this.neighPtData.paths = [];
 	            _this.neighPtData.positions = [];
-	            for (var q = 0; q < GI.sys.pts[neighPtPath].length; q++) {
-	                _this.neighPtData.paths.push(GI.sys.pts[neighPtPath][q].path);
-	                _this.neighPtData.positions.push(GI.sys.pts[neighPtPath][q].position);
+	            var neighCnt = Object.keys(GI.sys.pts[neighPtPath].neighs).length;
+	            for (q in GI.sys.pts[neighPtPath].neighs) {
+	                _this.neighPtData.paths.push(GI.sys.currentPath.replace(/\/[A-Za-z]\//, '/' + q + '/'));
+	                _this.neighPtData.positions.push(GI.sys.pts[neighPtPath].neighs[q]);
 
 	                //更新定位点周围圆环的几何信息。
 	                var arrPos = [];
 	                var arrInx = [];
 	                var arrIds = [];
-
 	                for (var i = 0; i < _this.neighPtData.positions.length; i++) {
 	                    for (var j = 0; j < _this.neighPtData.vertexPositions.length; j++) {
 	                        switch (j % 3) {
@@ -1388,7 +1453,9 @@
 	            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, _this.indexBuffer); //索引导入缓冲区
 	            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, _this.neighPtData.index, gl.STATIC_DRAW);
 	            gl.uniformMatrix4fv(uNeighViewMatLoc, false, cam.vmMat4.elements);
-	            gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
+	            if (_this.isDrawNeighs) {
+	                gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
+	            }
 	        },
 
 	        //逐渐明亮
@@ -1556,6 +1623,8 @@
 	            forward2: false,
 	            forward2Dist: 0
 	        };
+	        _this.isRotateScene = false;
+	        _this.lastTarget = [0, 0, 0];
 	        _this.bindEvent();
 	        _this.update();
 	    };
@@ -1586,6 +1655,14 @@
 	            var tarEle = _this.tar.elements;
 	            _this.tar.copy(new PanoAJK.Math.Vector3(locEle).add(_this.dir));
 	            _this.vmMat4 = new PanoAJK.Math.Matrix4().setLookAt(locEle[0], locEle[1], locEle[2], tarEle[0], tarEle[1], tarEle[2], 0, 1, 0);
+
+	            //判断视角是否改变
+	            if (_this.lastTarget[0] != tarEle[0] || _this.lastTarget[1] != tarEle[1] || _this.lastTarget[2] != tarEle[2]) {
+	                _this.isRotateScene = true;
+	            } else {
+	                _this.isRotateScene = false;
+	            }
+	            _this.lastTarget = [tarEle[0], tarEle[1], tarEle[2]];
 
 	            //更新水平角
 	            if (_this.DIRHORIZONTAL_UPDATE) {
@@ -1740,6 +1817,8 @@
 	            if (GI.selId != -1 && _this.clickBool) {
 	                _this.offEvent();
 	                GI.sys.currentPath = GI.objsToDraw.neighPts.neighPtData.paths[GI.selId];
+	                GI.cutOffGoods();
+	                GI.objsToDraw.neighPts.isDrawNeighs = false;
 	                GI.objsToDraw.skybox.updateTexture(GI.sys.currentPath, false);
 	                //平滑旋转相机
 	                var dirNextPt = new PanoAJK.Math.Vector3([GI.objsToDraw.neighPts.neighPtData.positions[GI.selId][0], 0, GI.objsToDraw.neighPts.neighPtData.positions[GI.selId][2]]).normalize();
@@ -1790,6 +1869,12 @@
 	                }
 	                //更新全景相邻点位
 	                GI.objsToDraw.neighPts.updateDate();
+	                GI.objsToDraw.neighPts.isDrawNeighs = true;
+	                if (GI.sys.showGoods) {
+	                    GI.updateGoodsPos();
+	                    GI.updateGoodsDom();
+	                    GI.cutOnGoods();
+	                }
 	            }
 
 	            _this.clickBool = false;

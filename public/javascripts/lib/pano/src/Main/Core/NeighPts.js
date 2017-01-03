@@ -55,6 +55,7 @@ require('../WebGL/math.js');
         _this.alpha = 0.06;
         _this.multiple = 1.05;
         _this.brighteningBool = true;
+        _this.isDrawNeighs = true;
         _this.updateDate();
     };
 
@@ -63,18 +64,18 @@ require('../WebGL/math.js');
 
         //更新定位点
         updateDate : function(){
-            var neighPtPath = GI.sys.currentPath.split('/')[2];
+            var neighPtPath = GI.sys.currentPath.match(/\/[a-z]{1}\//)[0].split('/')[1];
             _this.neighPtData.paths = [];
             _this.neighPtData.positions = [];
-            for(var q = 0;q<GI.sys.pts[neighPtPath].length;q++){
-                _this.neighPtData.paths.push(GI.sys.pts[neighPtPath][q].path);
-                _this.neighPtData.positions.push(GI.sys.pts[neighPtPath][q].position);
+            var neighCnt = Object.keys(GI.sys.pts[neighPtPath].neighs).length;
+            for(q in GI.sys.pts[neighPtPath].neighs){
+                _this.neighPtData.paths.push(GI.sys.currentPath.replace(/\/[A-Za-z]\//, '/' + q + '/'));
+                _this.neighPtData.positions.push(GI.sys.pts[neighPtPath].neighs[q]);
 
                 //更新定位点周围圆环的几何信息。
                 var arrPos = [];
                 var arrInx = [];
                 var arrIds = [];
-
                 for(var i = 0; i<_this.neighPtData.positions.length;i++){
                     for(var j = 0;j<_this.neighPtData.vertexPositions.length;j++){
                         switch(j%3){
@@ -136,7 +137,9 @@ require('../WebGL/math.js');
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, _this.indexBuffer);//索引导入缓冲区
             gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, _this.neighPtData.index, gl.STATIC_DRAW);
             gl.uniformMatrix4fv(uNeighViewMatLoc, false, cam.vmMat4.elements);
-            gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
+            if (_this.isDrawNeighs) {
+                gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
+            }
         },
 
         //逐渐明亮

@@ -142,7 +142,6 @@ require('../WebGL/math.js');
 
         //全景图预加载
         preloadTexture : function(url){
-
             if($.inArray(url,GI.sys.imageLoadedList) == -1){
                 var urls = [        //全景图链接(顺序必须一致)
                     url+"_right.jpg", url+"_left.jpg",
@@ -193,9 +192,11 @@ require('../WebGL/math.js');
             //进行预加载
             var urlId = url.split('/')[2];
             var pts = GI.sys.pts;
-            for(var item in pts[urlId]){
-                if($.inArray(pts[urlId][item]['path'],GI.sys.imageLoadedList) == -1){
-                    _this.preloadTexture(pts[urlId][item]['path']);
+            var preloadUrl;
+            for(var item in pts[urlId].neighs){
+                var preloadUrl = url.replace(/\/[A-Za-z]\//, '/' + item + '/');
+                if($.inArray(preloadUrl,GI.sys.imageLoadedList) == -1){
+                    _this.preloadTexture(preloadUrl);
                 }
             }
         }

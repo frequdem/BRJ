@@ -27,7 +27,9 @@ require('../WebGL/math.js');
             firstPath :args.firstPath,
             currentPath : args.firstPath,
             wanderBool : args.smoothSwitch || false,
-            projectionAngle : args.projection || 60
+            projectionAngle : args.projection || 60,
+            showGoods: true,
+            hasGoods: false
         };
         _this.sys.canvasObject = new PanoAJK.Main.Canvas(args.canvas);
         _this.sys.canvas = _this.sys.canvasObject.core;
@@ -70,13 +72,78 @@ require('../WebGL/math.js');
             _this.objsToDraw.skybox = new PanoAJK.Main.Skybox(skyboxArgs);
             if(_this.sys.wanderBool){
                 _this.objsToDraw.neighPts = new PanoAJK.Main.NeighPts(_this);
+            };
+
+
+            if (_this.sys.showGoods) {
+                _this.updateGoodsPos();
+                _this.updateGoodsDom();
+            }
+
+        },
+        //更新物品
+        updateGoodsPos: function() {
+            _this.sys.goodsPos = [];
+            _this.sys.goodsInfo = [];
+            _this.sys.ptName = _this.sys.currentPath.match(/\/[a-z]{1}\//)[0].split('/')[1]; //类似'a','b'
+            _this.sys.currGoodsInfo = _this.sys.pts[_this.sys.ptName].goods
+            if (_this.sys.currGoodsInfo && _this.sys.currGoodsInfo.length) {
+                _this.sys.hasGoods = true;
+                for (var i = 0; i < _this.sys.currGoodsInfo.length; i++) {
+                    _this.sys.goodsPos.push(_this.sys.currGoodsInfo[i].pos);
+                    _this.sys.goodsInfo.push(_this.sys.currGoodsInfo[i].info);
+                }   
+            } else {
+                _this.sys.hasGoods = false;
             }
         },
-
+        updateGoodsDom: function() {
+            var goodsJq = $('#all-goods-base');
+            if (!_this.sys.hasGoods) {
+                goodsJq.html('');
+                return;
+            }
+            var finalHtml = '';
+            var htmlSeg1 = '<span class="good-point" id="';            
+            var htmlSeg2 = '"><span class="good-info-text" style="width: ';
+            var htmlSeg3 = '</span><span class="good-point-out"></span><span class="good-point-in"></span></span>';
+            for(var i = 0; i < _this.sys.goodsPos.length; i ++) {
+                var text = _this.sys.goodsInfo[i].name + ' / ' + _this.sys.goodsInfo[i].brand;
+                finalHtml += (htmlSeg1 + i + htmlSeg2 + (text.length * 0.13) + 'rem;">' + text + htmlSeg3);
+            }
+            goodsJq.html(finalHtml);
+        },
+        cutOffGoods: function() {
+            var goodsJq = $('#all-goods-base');
+            goodsJq.find('.good-info-text').text('').animate({"width": "0rem"}, 600, function() {
+                goodsJq.hide();
+            });
+            
+        },
+        cutOnGoods: function() {
+            $('#all-goods-base').show();
+        },
+        refreshGoodsPos: function(controller) {
+            var dirs,
+                dirPt,
+                t,
+                width,
+                height;
+            $.each(_this.sys.goodsPos, function(index, item) {
+                dirs = item;
+                dirPt = new PanoAJK.Math.Matrix4().set(_this.sys.projection).multiply(controller.vmMat4).multiplyVector4(new PanoAJK.Math.Vector4([dirs[0],dirs[1],dirs[2],1]));
+                if (dirPt.elements[3] < 0) {
+                    return;
+                }
+                t = [dirPt.elements[0]/dirPt.elements[3],dirPt.elements[1]/dirPt.elements[3]];
+                width = _this.sys.canvasObject.width() * (t[0] + 1) / 200;
+                height= _this.sys.canvasObject.height() * (1 - t[1]) / 200;
+                $('#'+index).css({'transform': 'translate(' + width + 'rem,' + height +'rem)'});
+            });
+        },
         //刷新
         refresh : function(controller){
             controller.update();
-
             //平滑漫游流程控制
             if(_this.sys.wanderBool){
                 _this.checkMouseOverNeighpt(controller);
@@ -89,6 +156,9 @@ require('../WebGL/math.js');
             _this.objsToDraw.skybox.render(controller);
             if(_this.objsToDraw.neighPts){
                 _this.objsToDraw.neighPts.render(controller);
+            }
+            if (controller.isRotateScene && _this.sys.showGoods && _this.sys.hasGoods) {
+                _this.refreshGoodsPos(controller);
             }
         },
 

@@ -35,7 +35,7 @@ body {
 	position: absolute;
 	left: -0.13rem;
 	top: -0.13rem;
-	transform: translate(0.3rem, 1rem);
+	transform: translate(-2rem,-2rem);
 }
 .good-point-out {
 	display: inline-block; 
@@ -59,4 +59,15 @@ body {
 	top: 50%; 
 	transform: translate(-50%,-50%); 
 	border: 0.01rem solid #fff;
+}
+.good-info-text {
+	display: inline-block;
+	height: 0.2rem;
+	line-height: 0.2rem;
+	border-bottom: 1px solid #fff;
+	position: absolute;
+	top: -0.08rem;
+	left: 0.12rem;
+	padding: 0 0.04rem 0 0.2rem;
+	color: #eee;
 }

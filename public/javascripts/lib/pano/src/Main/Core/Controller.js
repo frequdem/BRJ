@@ -49,6 +49,8 @@ require('../WebGL/math.js');
             forward2: false,
             forward2Dist: 0
         };
+        _this.isRotateScene = false;
+        _this.lastTarget = [0,0,0];
         _this.bindEvent();
         _this.update();
 
@@ -85,6 +87,14 @@ require('../WebGL/math.js');
             var tarEle = _this.tar.elements;
             _this.tar.copy(new PanoAJK.Math.Vector3(locEle).add(_this.dir));
             _this.vmMat4 = new PanoAJK.Math.Matrix4().setLookAt(locEle[0], locEle[1], locEle[2], tarEle[0], tarEle[1], tarEle[2], 0, 1, 0);
+
+            //判断视角是否改变
+            if ((_this.lastTarget[0] != tarEle[0]) || (_this.lastTarget[1] != tarEle[1]) || (_this.lastTarget[2] != tarEle[2])) {
+                _this.isRotateScene = true;
+            } else {
+                _this.isRotateScene = false;
+            }
+            _this.lastTarget = [tarEle[0], tarEle[1], tarEle[2]];
 
             //更新水平角
             if (_this.DIRHORIZONTAL_UPDATE) {
@@ -247,6 +257,8 @@ require('../WebGL/math.js');
             if (GI.selId != -1 && _this.clickBool) {
                 _this.offEvent();
                 GI.sys.currentPath = GI.objsToDraw.neighPts.neighPtData.paths[GI.selId];
+                GI.cutOffGoods();
+                GI.objsToDraw.neighPts.isDrawNeighs = false;
                 GI.objsToDraw.skybox.updateTexture(GI.sys.currentPath, false);
                 //平滑旋转相机
                 var dirNextPt = new PanoAJK.Math.Vector3([GI.objsToDraw.neighPts.neighPtData.positions[GI.selId][0], 0, GI.objsToDraw.neighPts.neighPtData.positions[GI.selId][2]]).normalize();
@@ -298,6 +310,12 @@ require('../WebGL/math.js');
                 }
                 //更新全景相邻点位
                 GI.objsToDraw.neighPts.updateDate();
+                GI.objsToDraw.neighPts.isDrawNeighs = true;
+                if (GI.sys.showGoods) {
+                    GI.updateGoodsPos();
+                    GI.updateGoodsDom();
+                    GI.cutOnGoods();
+                }
 
             }
 

@@ -56,6 +56,10 @@ var houseSchema = new mongoose.Schema({
 	collects: {
 		type: Number,
 		default: 0
+	},
+	panos: {
+		type: {},
+		require: true
 	}
 });
 var House = mongoose.model('house',houseSchema);
