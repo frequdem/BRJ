@@ -108,8 +108,8 @@ require('../WebGL/math.js');
             var htmlSeg2 = '"><span class="good-info-text" style="width: ';
             var htmlSeg3 = '</span><span class="good-point-out"></span><span class="good-point-in"></span></span>';
             for(var i = 0; i < _this.sys.goodsPos.length; i ++) {
-                var text = _this.sys.goodsInfo[i].name + ' / ' + _this.sys.goodsInfo[i].brand;
-                finalHtml += (htmlSeg1 + i + htmlSeg2 + (text.length * 0.13) + 'rem;">' + text + htmlSeg3);
+                var text = _this.sys.goodsInfo[i].name + '/' + _this.sys.goodsInfo[i].brand;
+                finalHtml += (htmlSeg1 + i + htmlSeg2 + (text.length * 0.14) + 'rem;">' + text + htmlSeg3);
             }
             goodsJq.html(finalHtml);
         },
@@ -122,6 +122,18 @@ require('../WebGL/math.js');
         },
         cutOnGoods: function() {
             $('#all-goods-base').show();
+        },
+        goodPtShine: function() {
+            var goodPtsJq = $('.good-point-out');        
+            function goodPtShine1() {
+                goodPtsJq.animate({'background': '#888', 'width': '0.26rem', 'height': '0.26rem', 'border-radius': '0.13rem', 'opacity': '0.2'}, 1300,  function() {
+                        goodPtsJq.css({ 'background': '#fff', 'width': '0.1rem', 'height': '0.1rem', 'border-radius': '0.05rem', 'opacity': '0.9'});
+                        requestAnimationFrame(goodPtShine1);
+                });
+            }    
+            if (goodPtsJq.length) {
+                goodPtShine1();
+            }
         },
         refreshGoodsPos: function(controller) {
             var dirs,

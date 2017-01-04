@@ -65,7 +65,18 @@
 </div>
 <canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
 <div id="compass"></div>
+<script type="text/template" id="alertTpl">
+    <div class="alert-good-area">
+        <div class="alert-good">
+            <i class="iconfont close-alert-cross">&#xe617;</i>
+            <p>名称： {{=data.name}}</p>
+            <p>类型： {{=data.type}}</p>
+            <p>品牌： {{=data.brand}}</p>
+            <p>链接： <a href="http://taobao.com">www.taobao.com</a></p>
+        </div>
 
+    </div>
+</script>
 <script>
 /*       pts : {"a":[{position:[-36.711931,-24.502305,89.732219],path:"resource/5842fa95a5ebde0133fe9bcd/b/",planPt:[40,70]}],
                 "b":[{position:[70.566856,-36.871385,-60.504709],path:"resource/5842fa95a5ebde0133fe9bcd/a/",planPt:[63,85]},{position:[26.053868,-65.562604,70.871299],path:"resource/5842fa95a5ebde0133fe9bcd/c/",planPt:[63,50]}],
@@ -104,14 +115,20 @@
                         c: [34.341212,-52.466784,77.89684]
                     },
                     goods: [{
-                        pos: [-30.711931,-30.502305,89.732219],
+                        pos: [-40.711931,-25.502305,89.732219],
                         info: {
-                            name: '电视',
-                            type: '电器',
-                            brand: 'TCL'
+                            name: '面包机',
+                            type: '家电',
+                            brand: '松下电子'
                         }
                     }]
-                }
+                },
+                c: {
+                    neighs: {
+                        b: [34.341212,-52.466784,77.89684]
+                    },
+                    goods: []
+                }                
             }
         }
     };
@@ -128,26 +145,25 @@
     qj.addComponent(compass);
     qj.draw();
 
-    function goodPtShine() {
-        var goodsJq = $('#all-goods-base');
-        goodsJq.on('tap', '.good-point', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            alert(qj.Core.sys.pts[qj.Core.sys.ptName].goods[parseInt($(this).attr('id'))].info.name);
-            
-        })
-        var goodPtsJq = $('.good-point-out');        
-        function goodPtShine1() {
-            goodPtsJq.animate({'background': '#888', 'width': '0.26rem', 'height': '0.26rem', 'border-radius': '0.13rem', 'opacity': '0.2'}, 1300,  function() {
-                    goodPtsJq.css({ 'background': '#222', 'width': '0.1rem', 'height': '0.1rem', 'border-radius': '0.05rem', 'opacity': '0.8'});
-                    requestAnimationFrame(goodPtShine1);
-            });
-        }    
-        if (goodPtsJq.length) {
-            goodPtShine1();
-        }
-    }  
-    goodPtShine();
+    //物品部分
+    qj.Core.goodPtShine();
+    _.templateSettings = {
+        evaluate    : /{{([\s\S]+?)}}/g,
+        interpolate : /{{=([\s\S]+?)}}/g,
+        escape      : /{{-([\s\S]+?)}}/g
+    };
+    var alertTemplate = _.template($('#alertTpl').html());
+    $('#all-goods-base').on('tap', '.good-point', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // alert(qj.Core.sys.pts[qj.Core.sys.ptName].goods[parseInt($(this).attr('id'))].info.name);   
+        $('body').append(alertTemplate({data: qj.Core.sys.pts[qj.Core.sys.ptName].goods[parseInt($(this).attr('id'))].info}));
+    })
+    $('body').on('tap', '.close-alert-cross', function() {
+        $('.alert-good-area').remove();
+    })
+    
+
 </script>
 </body>
 </html>

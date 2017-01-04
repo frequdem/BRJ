@@ -307,15 +307,17 @@ require('../WebGL/math.js');
                     _this.smoothRotate.forward2 = false;
                     _this.loc = new PanoAJK.Math.Vector3();
                     _this.bindEvent();
+                    //更新全景相邻点位
+                    GI.objsToDraw.neighPts.updateDate();
+                    GI.objsToDraw.neighPts.isDrawNeighs = true;
+                    if (GI.sys.showGoods) {
+                        GI.updateGoodsPos();
+                        GI.updateGoodsDom();
+                        GI.cutOnGoods();
+                        GI.goodPtShine();
+                    }
                 }
-                //更新全景相邻点位
-                GI.objsToDraw.neighPts.updateDate();
-                GI.objsToDraw.neighPts.isDrawNeighs = true;
-                if (GI.sys.showGoods) {
-                    GI.updateGoodsPos();
-                    GI.updateGoodsDom();
-                    GI.cutOnGoods();
-                }
+
 
             }
 
