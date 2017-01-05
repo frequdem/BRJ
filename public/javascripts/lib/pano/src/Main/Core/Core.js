@@ -128,7 +128,7 @@ require('../WebGL/math.js');
             function goodPtShine1() {
                 goodPtsJq.animate({'background': '#888', 'width': '0.26rem', 'height': '0.26rem', 'border-radius': '0.13rem', 'opacity': '0.2'}, 1300,  function() {
                         goodPtsJq.css({ 'background': '#fff', 'width': '0.1rem', 'height': '0.1rem', 'border-radius': '0.05rem', 'opacity': '0.9'});
-                        requestAnimationFrame(goodPtShine1);
+                        // requestAnimationFrame(goodPtShine1);
                 });
             }    
             if (goodPtsJq.length) {

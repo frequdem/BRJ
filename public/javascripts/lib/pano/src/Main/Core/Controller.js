@@ -314,7 +314,7 @@ require('../WebGL/math.js');
                         GI.updateGoodsPos();
                         GI.updateGoodsDom();
                         GI.cutOnGoods();
-                        GI.goodPtShine();
+                        // GI.goodPtShine();
                     }
                 }
 

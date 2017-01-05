@@ -2,7 +2,6 @@
     <title>别人家</title>
     <link rel='stylesheet' href='/stylesheets/pano/pano.css' />
     <script type="text/javascript" src="/javascripts/js/pano/pano.js"></script>
-    <script type="text/javascript" src="/javascripts/lib/pano/built/Pano.js"></script>
     <!-- <script type="text/javascript" src="/javascripts/lib/Compass.js"></script> -->
 
     <!--顶点着色器-->
@@ -29,7 +28,7 @@
                 if(uSwitchRatio == 0.0){
                 gl_FragColor = texColor;
                 }else{
-                gl_FragColor = (vec4(0.12,0.12,0.12,1.0) - texColor)*pow(uSwitchRatio,6.0) + texColor  ;
+                gl_FragColor = (vec4(0.12,0.12,0.12,0.2) - texColor)*pow(uSwitchRatio,2.0) + texColor  ;
                 }
                 //gl_FragColor = vec4(0.5, 0.0, 0.0, 1.0);
          }
@@ -146,7 +145,8 @@
     qj.draw();
 
     //物品部分
-    qj.Core.goodPtShine();
+    //标注点闪烁
+    // qj.Core.goodPtShine();
     _.templateSettings = {
         evaluate    : /{{([\s\S]+?)}}/g,
         interpolate : /{{=([\s\S]+?)}}/g,
@@ -156,7 +156,6 @@
     $('#all-goods-base').on('tap', '.good-point', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        // alert(qj.Core.sys.pts[qj.Core.sys.ptName].goods[parseInt($(this).attr('id'))].info.name);   
         $('body').append(alertTemplate({data: qj.Core.sys.pts[qj.Core.sys.ptName].goods[parseInt($(this).attr('id'))].info}));
     })
     $('body').on('tap', '.close-alert-cross', function() {

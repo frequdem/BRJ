@@ -120,6 +120,20 @@
 
         <script type="text/javascript">
           var logStatus = <%=logStatus%>;
+          //预加载全景图片
+          var basePath = '/resource/<%=data._id%>/a/';
+          var urls = [        //全景图链接(顺序必须一致)
+                  basePath+"_right.jpg", basePath+"_left.jpg",
+                  basePath+"_top.jpg", basePath+"_bottom.jpg",
+                  basePath+"_front.jpg", basePath+"_back.jpg"
+              ];
+          var imgs = [];
+          for (var i = 0; i < 6; i++) {
+              imgs[i] = new Image();
+              imgs[i].crossOrigin = 'annoymous'; //处理跨域访问文理
+              imgs[i].src = urls[i];
+          }
+            
         </script>
         <script type="text/javascript" src="/javascripts/js/single/single.js"></script>
         <script type="text/template" id="commentsTemplate"> 
