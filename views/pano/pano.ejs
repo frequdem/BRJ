@@ -2,6 +2,20 @@
     <title>别人家</title>
     <link rel='stylesheet' href='/stylesheets/pano/pano.css' />
     <script type="text/javascript" src="/javascripts/js/pano/pano.js"></script>
+    <script type="text/javascript">
+        $.fn.longPress = function(fn) {
+            var timeout = undefined;
+            var $this = this;
+            for(var i = 0;i<$this.length;i++){
+                $this[i].addEventListener('touchstart', function(event) {
+                    timeout = setTimeout(fn.bind(null, event), 800);  //长按时间超过800ms，则执行传入的方法
+                    }, false);
+                $this[i].addEventListener('touchend', function(event) {
+                    clearTimeout(timeout);  //长按时间少于800ms，不会执行传入的方法
+                    }, false);
+            }
+        }
+    </script>
     <!-- <script type="text/javascript" src="/javascripts/lib/Compass.js"></script> -->
 
     <!--顶点着色器-->
@@ -28,7 +42,7 @@
                 if(uSwitchRatio == 0.0){
                 gl_FragColor = texColor;
                 }else{
-                gl_FragColor = (vec4(0.12,0.12,0.12,0.2) - texColor)*pow(uSwitchRatio,2.0) + texColor  ;
+                gl_FragColor = (vec4(0.12,0.12,0.12,0.16) - texColor)*pow(uSwitchRatio,3.0) + texColor  ;
                 }
                 //gl_FragColor = vec4(0.5, 0.0, 0.0, 1.0);
          }
@@ -111,7 +125,7 @@
                 b: {
                     neighs: {
                         a: [70.566856,-36.871385,-60.504709],
-                        c: [34.341212,-52.466784,77.89684]
+                        c: [24.341212,-21.466784,94.89684]
                     },
                     goods: [{
                         pos: [-40.711931,-25.502305,89.732219],
@@ -160,6 +174,18 @@
     })
     $('body').on('tap', '.close-alert-cross', function() {
         $('.alert-good-area').remove();
+    })
+    $('body').longPress(function(e){
+        var persMat = new PanoAJK.Math.Matrix4().setInverseOf(qj.Core.sys.projection);
+        var viewMat = new PanoAJK.Math.Matrix4().setInverseOf(qj.Controller.vmMat4);
+        var target = [e.touches[0].clientX, e.touches[0].clientY];
+        var canvas = document.getElementById('canvas');
+        var cavsBound = canvas.getBoundingClientRect();
+        var screenAxis = new PanoAJK.Math.Vector3([(target[0] - cavsBound.left) * 2 / canvas.width - 1, 1 - (target[1] - cavsBound.top) * 2 / canvas.height, 0]);
+        var ptt = viewMat.multiply(persMat).multiplyVector4(new PanoAJK.Math.Vector4([screenAxis.elements[0], screenAxis.elements[1], screenAxis.elements[2], 1]));
+        var pttt = new PanoAJK.Math.Vector3([ptt.elements[0]/ptt.elements[3], ptt.elements[1]/ptt.elements[3], ptt.elements[2]/ptt.elements[3]]);
+        var ptttt = pttt.setLength(100).elements;
+        console.log(ptttt);
     })
     
 
