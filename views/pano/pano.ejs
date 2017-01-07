@@ -8,7 +8,7 @@
             var $this = this;
             for(var i = 0;i<$this.length;i++){
                 $this[i].addEventListener('touchstart', function(event) {
-                    timeout = setTimeout(fn.bind(null, event), 800);  //长按时间超过800ms，则执行传入的方法
+                    timeout = setTimeout(fn.bind(null, event), 2000);  //长按时间超过800ms，则执行传入的方法
                     }, false);
                 $this[i].addEventListener('touchend', function(event) {
                     clearTimeout(timeout);  //长按时间少于800ms，不会执行传入的方法
@@ -78,6 +78,10 @@
 </div>
 <canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
 <div id="compass"></div>
+<div id="magnifier">
+    <div class="larger"><i class="iconfont">&#xe62b;</i></div>
+    <div class="smaller"><i class="iconfont">&#xe62f;</i></div>
+</div>
 <script type="text/template" id="alertTpl">
     <div class="alert-good-area">
         <div class="alert-good">
@@ -175,6 +179,8 @@
     $('body').on('tap', '.close-alert-cross', function() {
         $('.alert-good-area').remove();
     })
+
+    //长按显示朝向坐标；
     $('body').longPress(function(e){
         var persMat = new PanoAJK.Math.Matrix4().setInverseOf(qj.Core.sys.projection);
         var viewMat = new PanoAJK.Math.Matrix4().setInverseOf(qj.Controller.vmMat4);
@@ -186,7 +192,42 @@
         var pttt = new PanoAJK.Math.Vector3([ptt.elements[0]/ptt.elements[3], ptt.elements[1]/ptt.elements[3], ptt.elements[2]/ptt.elements[3]]);
         var ptttt = pttt.setLength(100).elements;
         console.log(ptttt);
-    })
+    });
+
+    /**
+    * 缩放时更改旋转速度刷新商品
+    * @param {Boolean} bool - true表示放大，false表示缩小
+    * @return 
+    */
+    function scaleProjectionAndSpeedAndGoods(bool) {
+        qj.Core.scaleProjectionMat(bool);
+        var speed = 36 * (qj.Core.sys.projectionAngle / (120 - qj.Core.sys.projectionAngle));
+        qj.Controller.rotatesp =  speed > 32 ? 32 : speed;
+        if (qj.Core.sys.showGoods &&  qj.Core.sys.hasGoods) {
+                qj.Core.refreshGoodsPos(qj.Controller);
+            }
+    }
+    /**
+    * 缩放时按钮闪烁
+    * @param {Boolean} bool - true表示放大，false表示缩小
+    * @return 
+    */
+    function scaleAndBlink(bool, ele) {
+        scaleProjectionAndSpeedAndGoods(bool);
+        $(ele).animate({'background': '#76B3B4', 'color': '#eee'}, 60,function() {
+            setTimeout(function() {
+                $(ele).css({'background': '#eee', 'color': '#76B3B4'});
+            }, 100);
+        });
+    }
+    $('#magnifier').on('tap', '.larger', function() {
+        scaleAndBlink(true, this);
+        
+    });
+    $('#magnifier').on('tap', '.smaller', function() {
+        scaleAndBlink(false, this);
+    });
+
     
 
 </script>

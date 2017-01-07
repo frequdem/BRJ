@@ -51,7 +51,6 @@ require('../WebGL/math.js');
         _this.coordsBuffer = gl.createBuffer();
         _this.idsBuffer = gl.createBuffer();
         _this.indexBuffer = gl.createBuffer();
-        gl.uniformMatrix4fv(uNeighProjectionLoc, false, GI.sys.projection.elements);
         _this.alpha = 0.06;
         _this.multiple = 1.05;
         _this.brighteningBool = true;
@@ -137,6 +136,8 @@ require('../WebGL/math.js');
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, _this.indexBuffer);//索引导入缓冲区
             gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, _this.neighPtData.index, gl.STATIC_DRAW);
             gl.uniformMatrix4fv(uNeighViewMatLoc, false, cam.vmMat4.elements);
+            gl.uniformMatrix4fv(uNeighProjectionLoc, false, GI.sys.projection.elements);
+
             if (_this.isDrawNeighs) {
                 gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
             }

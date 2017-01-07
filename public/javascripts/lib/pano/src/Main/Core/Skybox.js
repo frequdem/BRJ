@@ -41,7 +41,7 @@ require('../WebGL/math.js');
 
         gl.enableVertexAttribArray(aCoords);
         gl.enable(gl.DEPTH_TEST);
-        gl.uniformMatrix4fv(uProjection, false, GI.sys.projection.elements);
+        
 
 
         _this.coordsBuffer = gl.createBuffer();
@@ -69,7 +69,7 @@ require('../WebGL/math.js');
             gl.uniformMatrix4fv(uModelview, false, cam.vmMat4.elements);
 
             gl.uniform1f(program.uSwitchRatioLoc,program.switchRatio);
-
+            gl.uniformMatrix4fv(uProjection, false, GI.sys.projection.elements);
             gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_BYTE, 0);
         },
 

@@ -52,62 +52,62 @@
 	 */
 	__webpack_require__(1);
 	(function ($) {
-	        PanoAJK.Component.Compass = function (args) {
-	                //三个参数分别代表GI核心程序，展示平面图的DOM元素，相机控制器，初始角度与南向的顺时针夹角。
-	                var rootDom = args.dom;
-	                var GI = this.GI = args.GI;
+	    PanoAJK.Component.Compass = function (args) {
+	        //三个参数分别代表GI核心程序，展示平面图的DOM元素，相机控制器，初始角度与南向的顺时针夹角。
+	        var rootDom = args.dom;
+	        var GI = this.GI = args.GI;
 
-	                this.ctrller = args.controller;
-	                this.angleSpan = args.angle;
+	        this.ctrller = args.controller;
+	        this.angleSpan = args.angle;
 
-	                this.virtualDom = document.createElement('div');
+	        this.virtualDom = document.createElement('div');
 
-	                //加入指南针框
-	                var compassImg = new Image();
-	                var pathSegs = GI.sys.firstPath.split('/');
-	                compassImg.src = '/images/pano/compass.png';
+	        //加入指南针框
+	        var compassImg = new Image();
+	        var pathSegs = GI.sys.firstPath.split('/');
+	        compassImg.src = '/images/pano/compass.png';
 
-	                var imgId = document.createAttribute('style');
-	                imgId.nodeValue = 'width:100%;height:100%;';
-	                compassImg.setAttributeNode(imgId);
-	                this.virtualDom.appendChild(compassImg);
+	        var imgId = document.createAttribute('style');
+	        imgId.nodeValue = 'width:100%;height:100%;';
+	        compassImg.setAttributeNode(imgId);
+	        this.virtualDom.appendChild(compassImg);
 
-	                //加入指针
-	                var pointerImg = new Image();
+	        //加入指针
+	        var pointerImg = new Image();
 
-	                pointerImg.src = '/images/pano/compassPointer.png';
-	                var pointerImgId = document.createAttribute('style');
-	                pointerImgId.nodeValue = 'position:absolute;top:26%;left:30%;width:40%;height : 50%';
-	                pointerImg.setAttributeNode(pointerImgId);
-	                this.virtualDom.appendChild(pointerImg);
+	        pointerImg.src = '/images/pano/compassPointer.png';
+	        var pointerImgId = document.createAttribute('style');
+	        pointerImgId.nodeValue = 'position:absolute;top:26%;left:30%;width:40%;height : 50%';
+	        pointerImg.setAttributeNode(pointerImgId);
+	        this.virtualDom.appendChild(pointerImg);
 
-	                var virtualId = document.createAttribute('style');
-	                virtualId.nodeValue = 'position:relative;width: 100%;height : 100%;';
-	                this.virtualDom.setAttributeNode(virtualId);
-	                rootDom.appendChild(this.virtualDom);
+	        var virtualId = document.createAttribute('style');
+	        virtualId.nodeValue = 'position:relative;width: 100%;height : 100%;';
+	        this.virtualDom.setAttributeNode(virtualId);
+	        rootDom.appendChild(this.virtualDom);
 
-	                //存储方位点的信息
-	                var dir = this.ctrller.dir.elements;
-	                this.dir = [dir[0], dir[2]];
+	        //存储方位点的信息
+	        var dir = this.ctrller.dir.elements;
+	        this.dir = [dir[0], dir[2]];
 
-	                this.pointerImg = pointerImg;
-	        };
-	        PanoAJK.Component.Compass.prototype.update = function () {
-	                var _this = this;
-	                var pointerImg = $(_this.pointerImg);
+	        this.pointerImg = pointerImg;
+	    };
+	    PanoAJK.Component.Compass.prototype.update = function () {
+	        var _this = this;
+	        var pointerImg = $(_this.pointerImg);
 
-	                //更新方向
-	                var dir = _this.ctrller.dir.elements;
-	                if (!(dir[0] == _this.dir[0] && dir[2] == _this.dir[2])) {
+	        //更新方向
+	        var dir = _this.ctrller.dir.elements;
+	        if (!(dir[0] == _this.dir[0] && dir[2] == _this.dir[2])) {
 
-	                        if (dir[0] >= 0) {
-	                                pointerImg.css({ 'transform': 'rotate(-' + (Math.acos(_this.ctrller.dirHorizontal.elements[2]) * 57.3 + _this.angleSpan) + 'deg)' });
-	                        } else {
-	                                pointerImg.css({ 'transform': 'rotate(' + (Math.acos(_this.ctrller.dirHorizontal.elements[2]) * 57.3 - _this.angleSpan) + 'deg)' });
-	                        }
-	                        _this.dir = [dir[0], dir[2]];
-	                }
-	        };
+	            if (dir[0] >= 0) {
+	                pointerImg.css({ 'transform': 'rotate(-' + (Math.acos(_this.ctrller.dirHorizontal.elements[2]) * 57.3 + _this.angleSpan) + 'deg)' });
+	            } else {
+	                pointerImg.css({ 'transform': 'rotate(' + (Math.acos(_this.ctrller.dirHorizontal.elements[2]) * 57.3 - _this.angleSpan) + 'deg)' });
+	            }
+	            _this.dir = [dir[0], dir[2]];
+	        }
+	    };
 	})(window.jQuery || window.Zepto);
 
 /***/ },
@@ -367,6 +367,34 @@
 	                    break;
 	                }
 	            }
+	        },
+
+	        /**
+	        * 缩放投影矩阵
+	        * @param {Boolean} bool - true为放大，false为缩小
+	        * @param {Int} [value = 5] - 缩放值
+	        * @param {Int} [max = 110] - 最大值
+	        * @param {Int} [min = 25] - 最小值
+	        * @return 
+	        */
+	        scaleProjectionMat: function (bool, value, max, min) {
+	            var step = value || 5;
+	            var minValue = min || 25;
+	            var maxValue = max || 110;
+
+	            if (bool) {
+	                if (_this.sys.projectionAngle < minValue) {
+	                    return;
+	                }
+	                _this.sys.projectionAngle -= 5;
+	            } else {
+	                if (_this.sys.projectionAngle > maxValue) {
+	                    return;
+	                }
+	                _this.sys.projectionAngle += 5;
+	            }
+	            var canvas = _this.sys.canvas;
+	            _this.sys.projection = new PanoAJK.Math.Matrix4().setPerspective(_this.sys.projectionAngle, canvas.width / canvas.height, 10, 3000);
 	        }
 	    };
 	})(window.jQuery || window.Zepto);
@@ -502,7 +530,6 @@
 
 	        gl.enableVertexAttribArray(aCoords);
 	        gl.enable(gl.DEPTH_TEST);
-	        gl.uniformMatrix4fv(uProjection, false, GI.sys.projection.elements);
 
 	        _this.coordsBuffer = gl.createBuffer();
 	        _this.indexBuffer = gl.createBuffer();
@@ -529,7 +556,7 @@
 	            gl.uniformMatrix4fv(uModelview, false, cam.vmMat4.elements);
 
 	            gl.uniform1f(program.uSwitchRatioLoc, program.switchRatio);
-
+	            gl.uniformMatrix4fv(uProjection, false, GI.sys.projection.elements);
 	            gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_BYTE, 0);
 	        },
 
@@ -1379,7 +1406,6 @@
 	        _this.coordsBuffer = gl.createBuffer();
 	        _this.idsBuffer = gl.createBuffer();
 	        _this.indexBuffer = gl.createBuffer();
-	        gl.uniformMatrix4fv(uNeighProjectionLoc, false, GI.sys.projection.elements);
 	        _this.alpha = 0.06;
 	        _this.multiple = 1.05;
 	        _this.brighteningBool = true;
@@ -1465,6 +1491,8 @@
 	            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, _this.indexBuffer); //索引导入缓冲区
 	            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, _this.neighPtData.index, gl.STATIC_DRAW);
 	            gl.uniformMatrix4fv(uNeighViewMatLoc, false, cam.vmMat4.elements);
+	            gl.uniformMatrix4fv(uNeighProjectionLoc, false, GI.sys.projection.elements);
+
 	            if (_this.isDrawNeighs) {
 	                gl.drawElements(gl.TRIANGLES, _this.count, gl.UNSIGNED_SHORT, 0);
 	            }
@@ -1740,14 +1768,14 @@
 	            /* 非惯性旋转
 	             var axis = new PanoAJK.Math.Vector3();
 	             var quatRo = new PanoAJK.Math.Quat();
-	               var angle = _this.rotatesp*Math.acos(rotateSt.dot(rotateEnd)/(rotateSt.length()*rotateEnd.length()));
-	               if(Math.abs(angle)>0.0001){
+	              var angle = _this.rotatesp*Math.acos(rotateSt.dot(rotateEnd)/(rotateSt.length()*rotateEnd.length()));
+	              if(Math.abs(angle)>0.0001){
 	             axis.copy(rotateEnd).cross(rotateSt).normalize();
 	             quatRo.setFromAxisAngle( axis.elements, -angle );
-	               _this.dir.applyQuat(quatRo);
-	               _this.up.applyQuat(quatRo);
-	               rotateEnd.applyQuat(quatRo);
-	               rotateSt.copy(rotateEnd);
+	              _this.dir.applyQuat(quatRo);
+	              _this.up.applyQuat(quatRo);
+	              rotateEnd.applyQuat(quatRo);
+	              rotateSt.copy(rotateEnd);
 	             }*/
 	        }, //四元数方法旋转
 

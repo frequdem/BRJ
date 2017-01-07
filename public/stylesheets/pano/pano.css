@@ -24,8 +24,8 @@ body {
 	position: absolute;
 	top: 0.1rem;
 	right: 0.1rem;
-	width: 100px;
-	height: 100px;
+	width: 0.8rem;
+	height: 0.8rem;
 	display: inline-block;
 }
 .good-point {
@@ -103,3 +103,29 @@ body .alert-good-area {
 	font-size: 0.2rem;
 	color: #76B3B4;
 }
+#magnifier {
+	position: absolute;
+	right: 0.1rem;
+	bottom: 0.32rem;
+	display: inline-block;
+	width: 0.32rem;
+	height: 0.88rem;
+}
+#magnifier .larger, #magnifier .smaller {
+	height: 0.32rem;
+	border-radius: 0.03rem;
+	background: #eee;
+	text-align: center;
+	line-height: 0.36rem;
+	color: #76B3B4;
+}
+#magnifier .smaller {
+	margin-top: 0.24rem;
+}
+#magnifier .larger i, #magnifier .smaller i {
+	font-size: 0.24rem;
+}
+
+
+
+
