@@ -196,14 +196,14 @@ require('../WebGL/math.js');
         * 缩放投影矩阵
         * @param {Boolean} bool - true为放大，false为缩小
         * @param {Int} [value = 5] - 缩放值
-        * @param {Int} [max = 110] - 最大值
+        * @param {Int} [max = 90] - 最大值
         * @param {Int} [min = 25] - 最小值
         * @return 
         */        
         scaleProjectionMat: function(bool, value, max, min) {
             var step = value || 5;
             var minValue = min || 25;
-            var maxValue = max || 110;
+            var maxValue = max || 90;
 
             if (bool) {
                 if (_this.sys.projectionAngle < minValue) {

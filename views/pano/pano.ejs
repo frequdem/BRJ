@@ -74,12 +74,16 @@
 <body>
     <div id="all-goods-base" style="position: absolute; top: 0; left: 0"></div>
 <div>
-    <i class="iconfont goBack">&#xe61d;</i>
+    <div class="go-back-area"><i class="iconfont goBack">&#xe61d;</i></div>
 </div>
 <canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
 <div id="compass"></div>
 <div id="magnifier">
     <div class="larger"><i class="iconfont">&#xe62b;</i></div>
+    <div class="slider">
+        <span class="slider-axis"></span>
+        <span class="level-line"></span>
+    </div>
     <div class="smaller"><i class="iconfont">&#xe62f;</i></div>
 </div>
 <script type="text/template" id="alertTpl">
@@ -129,7 +133,7 @@
                 b: {
                     neighs: {
                         a: [70.566856,-36.871385,-60.504709],
-                        c: [24.341212,-21.466784,94.89684]
+                        c: [25.466745376586914, -59.39791488647461, 76.31076049804688]
                     },
                     goods: [{
                         pos: [-40.711931,-25.502305,89.732219],
@@ -201,7 +205,7 @@
     */
     function scaleProjectionAndSpeedAndGoods(bool) {
         qj.Core.scaleProjectionMat(bool);
-        var speed = 36 * (qj.Core.sys.projectionAngle / (120 - qj.Core.sys.projectionAngle));
+        var speed = 32 * (qj.Core.sys.projectionAngle / (120 - qj.Core.sys.projectionAngle));
         qj.Controller.rotatesp =  speed > 32 ? 32 : speed;
         if (qj.Core.sys.showGoods &&  qj.Core.sys.hasGoods) {
                 qj.Core.refreshGoodsPos(qj.Controller);
@@ -219,6 +223,7 @@
                 $(ele).css({'background': '#eee', 'color': '#76B3B4'});
             }, 100);
         });
+        $('.slider .level-line').css({'top': (qj.Core.sys.projectionAngle-15) *1.1 + '%'});
     }
     $('#magnifier').on('tap', '.larger', function() {
         scaleAndBlink(true, this);
