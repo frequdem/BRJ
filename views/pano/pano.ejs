@@ -78,6 +78,10 @@
 </div>
 <canvas id="canvas">您的浏览器不支持canvas元素，赶紧更新吧</canvas>
 <div id="compass"></div>
+<div id="isGoodsShowed">
+    <i class="iconfont show-goods">&#xe692;</i>
+    <i class="iconfont no-show-goods">&#xe6c1;</i>
+</div>
 <div id="magnifier">
     <div class="larger"><i class="iconfont">&#xe62b;</i></div>
     <div class="slider">
@@ -115,11 +119,11 @@
                         b: [-36.711931,-24.502305,89.732219]
                     },
                     goods: [{
-                        pos: [-30.711931,-30.502305,89.732219],
+                        pos: [-13.260473251342773, -17.82830238342285, 97.50031280517578],
                         info: {
-                            name: '电视',
+                            name: '油汀',
                             type: '电器',
-                            brand: 'TCL'
+                            brand: '张工牌'
                         }
                     },{
                         pos: [-15.711931,10.502305,89.732219],
@@ -128,6 +132,21 @@
                             type: '书架',
                             brand: '宜家'
                         }
+                    },{
+                        pos: [-76.02099609375, -20.143152236938477, 61.76618576049805],
+                        info: {
+                            name: '电钢',
+                            type: '电器',
+                            brand: 'YAMAHA'
+                        }
+                    },{
+                        pos: [-54.82075881958008, -42.49707794189453, 72.03250885009766],
+                        info: {
+                            name: '面面',
+                            type: '设计师',
+                            brand: '温柔牌'
+                        }
+                        
                     }]
                 },
                 b: {
@@ -233,7 +252,27 @@
         scaleAndBlink(false, this);
     });
 
-    
+
+    //商品开关
+    $('#isGoodsShowed').tap(function() {
+        var showJq = $(this).find('.show-goods');
+        var noShowJq = $(this).find('.no-show-goods');  
+        if (noShowJq.css('display') == 'none') {
+            showJq.hide();
+            noShowJq.show();
+            qj.Core.cutOffGoods();
+        } else {
+            showJq.show();
+            noShowJq.hide();
+            qj.Core.cutOnGoods();
+        }
+        var ele = this;
+        $(ele).animate({'background': '#76B3B4', 'color': '#eee'}, 60,function() {
+            setTimeout(function() {
+                $(ele).css({'background': '#eee', 'color': '#76B3B4'});
+            }, 100);
+        });
+    });    
 
 </script>
 </body>

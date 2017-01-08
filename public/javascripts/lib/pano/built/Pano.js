@@ -292,7 +292,7 @@
 	            var htmlSeg3 = '</span><span class="good-point-out"></span><span class="good-point-in"></span></span>';
 	            for (var i = 0; i < _this.sys.goodsPos.length; i++) {
 	                var text = _this.sys.goodsInfo[i].name + '/' + _this.sys.goodsInfo[i].brand;
-	                finalHtml += htmlSeg1 + i + htmlSeg2 + text.length * 0.14 + 'rem;">' + text + htmlSeg3;
+	                finalHtml += htmlSeg1 + i + htmlSeg2 + text.length * 0.14 + 'rem;" data-width="' + text.length * 0.14 + 'rem" data-text="' + text + '">' + text + htmlSeg3;
 	            }
 	            goodsJq.html(finalHtml);
 	        },
@@ -303,7 +303,15 @@
 	            });
 	        },
 	        cutOnGoods: function () {
-	            $('#all-goods-base').show();
+	            var goodsJq = $('#all-goods-base');
+	            var goodsTextJq = goodsJq.find('.good-info-text');
+	            goodsJq.show();
+	            goodsTextJq.each(function (index, ele) {
+	                var eleJq = $(ele);
+	                eleJq.animate({ "width": eleJq.data('width') }, 600, function () {
+	                    eleJq.text(eleJq.data('text'));
+	                });
+	            });
 	        },
 	        goodPtShine: function () {
 	            var goodPtsJq = $('.good-point-out');

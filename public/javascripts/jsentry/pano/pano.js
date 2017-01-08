@@ -4,5 +4,6 @@ $(function() {
 	});
 	$('.goBack').tap(function() {
 		history.back(-1);
-	})
+	});
+
 })

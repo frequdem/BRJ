@@ -114,6 +114,22 @@ body .alert-good-area {
 	font-size: 0.2rem;
 	color: #76B3B4;
 }
+#isGoodsShowed {
+	position: absolute;
+	right: 0.1rem;
+	bottom: 1.9rem;
+	display: inline-block;
+	width: 0.32rem;
+	height: 0.32rem;
+	border-radius: 0.03rem;
+	background: #eee;
+	color: #76B3B4;
+	text-align: center;
+	line-height: 0.32rem;
+}
+.no-show-goods {
+	display: none;
+}
 #magnifier {
 	position: absolute;
 	right: 0.1rem;
