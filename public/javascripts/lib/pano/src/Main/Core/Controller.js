@@ -49,8 +49,6 @@ require('../WebGL/math.js');
             forward2: false,
             forward2Dist: 0
         };
-        _this.isRotateScene = false;
-        _this.lastTarget = [0,0,0];
         _this.bindEvent();
         _this.update();
 
@@ -87,14 +85,6 @@ require('../WebGL/math.js');
             var tarEle = _this.tar.elements;
             _this.tar.copy(new PanoAJK.Math.Vector3(locEle).add(_this.dir));
             _this.vmMat4 = new PanoAJK.Math.Matrix4().setLookAt(locEle[0], locEle[1], locEle[2], tarEle[0], tarEle[1], tarEle[2], 0, 1, 0);
-
-            //判断视角是否改变
-            if ((_this.lastTarget[0] != tarEle[0]) || (_this.lastTarget[1] != tarEle[1]) || (_this.lastTarget[2] != tarEle[2])) {
-                _this.isRotateScene = true;
-            } else {
-                _this.isRotateScene = false;
-            }
-            _this.lastTarget = [tarEle[0], tarEle[1], tarEle[2]];
 
             //更新水平角
             if (_this.DIRHORIZONTAL_UPDATE) {
@@ -310,15 +300,19 @@ require('../WebGL/math.js');
                     //更新全景相邻点位
                     GI.objsToDraw.neighPts.updateDate();
                     GI.objsToDraw.neighPts.isDrawNeighs = true;
-                    if (GI.sys.showGoods) {
+                    if (GI.sys.hasGoods) {
                         GI.updateGoodsPos();
                         GI.updateGoodsDom();
-                        GI.cutOnGoods();
-                        // GI.goodPtShine();
+                        GI.cutOffGoods(0);
+                        console.log(0);
+                        if (GI.sys.showGoods) {
+                            console.log(1);                     
+                            setTimeout(function() {
+                                GI.cutOnGoods(400);
+                            },0);
+                        }
                     }
                 }
-
-
             }
 
             _this.clickBool = false;

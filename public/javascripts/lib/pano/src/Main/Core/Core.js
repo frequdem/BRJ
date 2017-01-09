@@ -74,12 +74,14 @@ require('../WebGL/math.js');
                 _this.objsToDraw.neighPts = new PanoAJK.Main.NeighPts(_this);
             };
 
-
-            if (_this.sys.showGoods) {
-                _this.updateGoodsPos();
-                _this.updateGoodsDom();
+            _this.updateGoodsPos();
+            _this.updateGoodsDom();
+            _this.cutOffGoods(0);
+            if (_this.sys.showGoods) {                 
+                setTimeout(function() {
+                    _this.cutOnGoods(400);
+                },0);
             }
-
         },
         //更新物品
         updateGoodsPos: function() {
@@ -113,24 +115,33 @@ require('../WebGL/math.js');
             }
             goodsJq.html(finalHtml);
         },
-        cutOffGoods: function() {
+        cutOffGoods: function(dur, callback) {
             var goodsJq = $('#all-goods-base');
-            goodsJq.find('.good-info-text').text('').animate({"width": "0rem"}, 600, function() {
+            goodsJq.find('.good-info-text').text('').animate({"width": "0rem"}, dur, function() {
                 goodsJq.hide();
+                if (callback) {
+                    callback();
+                }
             });
             
         },
-        cutOnGoods: function() {
+        cutOnGoods: function(dur, callback) {
             var goodsJq = $('#all-goods-base');
             var goodsTextJq = goodsJq.find('.good-info-text');
             goodsJq.show();
             goodsTextJq.each(function(index, ele) {
                 var eleJq = $(ele);
-                eleJq.animate({"width": eleJq.data('width')}, 600, function() {
-                eleJq.text(eleJq.data('text'));
-            });
+                eleJq.animate({"width": eleJq.data('width')}, dur, function() {
+                    eleJq.text(eleJq.data('text'));
+                });
 
             });
+
+            if (callback) {
+                setTimeout(function() {
+                    callback();
+                }, dur);
+            }
         },
         goodPtShine: function() {
             var goodPtsJq = $('.good-point-out');        
@@ -178,7 +189,7 @@ require('../WebGL/math.js');
             if(_this.objsToDraw.neighPts){
                 _this.objsToDraw.neighPts.render(controller);
             }
-            if (controller.isRotateScene && _this.sys.showGoods && _this.sys.hasGoods) {
+            if (_this.sys.showGoods && _this.sys.hasGoods) {
                 _this.refreshGoodsPos(controller);
             }
         },
