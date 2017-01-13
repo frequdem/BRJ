@@ -300,16 +300,15 @@ require('../WebGL/math.js');
                     //更新全景相邻点位
                     GI.objsToDraw.neighPts.updateDate();
                     GI.objsToDraw.neighPts.isDrawNeighs = true;
-                    if (GI.sys.hasGoods) {
-                        GI.updateGoodsPos();
-                        GI.updateGoodsDom();
-                        GI.cutOffGoods(0);
-                        if (GI.sys.showGoods) {                 
-                            setTimeout(function() {
-                                GI.cutOnGoods(400);
-                            },0);
-                        }
+                    GI.updateGoodsPos();
+                    GI.updateGoodsDom();
+                    GI.cutOffGoods(0);
+                    if (GI.sys.showGoods) {                 
+                        setTimeout(function() {
+                            GI.cutOnGoods(400);
+                        },0);
                     }
+                    
                 }
             }
 

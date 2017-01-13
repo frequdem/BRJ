@@ -87,10 +87,19 @@
 }
 .play-icon {
 	position: absolute;
-	top: -0.07rem;
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.5rem;
+	line-height: 0.5rem;
+	background: #76B3B4;
+	top: -0.36rem;
 	right: 0.2rem;
 	color: #fff;
-	font-size: 0.5rem;
+	font-size: 0.24rem;
+	border-radius: 0.26rem;
+	text-align: center;
+	box-shadow:1px 3px 3px #eee;
+
 }
 .house-title {
 	position: absolute;
