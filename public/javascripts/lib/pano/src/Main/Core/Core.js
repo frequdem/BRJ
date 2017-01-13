@@ -134,7 +134,6 @@ require('../WebGL/math.js');
                 eleJq.animate({"width": eleJq.data('width')}, dur, function() {
                     eleJq.text(eleJq.data('text'));
                 });
-
             });
 
             if (callback) {

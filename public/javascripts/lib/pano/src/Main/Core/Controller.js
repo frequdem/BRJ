@@ -304,9 +304,7 @@ require('../WebGL/math.js');
                         GI.updateGoodsPos();
                         GI.updateGoodsDom();
                         GI.cutOffGoods(0);
-                        console.log(0);
-                        if (GI.sys.showGoods) {
-                            console.log(1);                     
+                        if (GI.sys.showGoods) {                 
                             setTimeout(function() {
                                 GI.cutOnGoods(400);
                             },0);

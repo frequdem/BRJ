@@ -123,8 +123,8 @@ $(function() {
     */
     function scaleProjectionAndSpeedAndGoods(bool) {
         qj.Core.scaleProjectionMat(bool);
-        var speed = 32 * (qj.Core.sys.projectionAngle / (120 - qj.Core.sys.projectionAngle));
-        qj.Controller.rotatesp =  speed > 32 ? 32 : speed;
+        var speed = 24 * (qj.Core.sys.projectionAngle / (120 - qj.Core.sys.projectionAngle));
+        qj.Controller.rotatesp =  speed > 24 ? 24 : speed;
         if (qj.Core.sys.showGoods &&  qj.Core.sys.hasGoods) {
                 qj.Core.refreshGoodsPos(qj.Controller);
             }
