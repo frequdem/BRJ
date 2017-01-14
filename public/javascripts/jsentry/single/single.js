@@ -269,10 +269,10 @@
 		// 点击播放按钮
 		$('.play-icon').on('tap', function() {
 			var _this = this;
-			$(_this).animate({'background': '#fff', 'color': '#76B3B4'},'ease', 1000);
+			$(_this).animate({'background': '#fff', 'color': '#76B3B4'},'ease', 300);
 			setTimeout(function() {
 				window.location.href = $(_this).data('href');
-			},200);
+			},300);
 		});
 	});
 
