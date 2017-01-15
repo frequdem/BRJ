@@ -16,7 +16,7 @@ body {
 .go-back-area {
 	position: absolute;
 	top: 0.2rem;
-	left: 0.16rem;
+	left: 0.1rem;
 	display: inline-block;
 	width: 0.32rem;
 	height: 0.32rem;
@@ -33,11 +33,28 @@ body {
 }
 #compass {
 	position: absolute;
-	top: 0.1rem;
-	right: 0.1rem;
+	bottom: 0.2rem;
+	left: 0.1rem;
 	width: 0.8rem;
 	height: 0.8rem;
 	display: inline-block;
+}
+#my-info {
+	position: absolute;
+	top: 0.2rem;
+	right: 0.1rem;
+	display: inline-block;
+	width: .32rem;
+	height: .32rem;
+	line-height: .32rem;
+	text-align: center;
+	background: #fff;
+	border-radius: .03rem;
+
+}
+#my-info i {
+	font-size: .17rem;
+	color: #76B3B4;
 }
 .good-point {
 	display: inline-block;
